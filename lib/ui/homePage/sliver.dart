@@ -1,5 +1,4 @@
-// Sliver appbar with tabs.
-// Adapted from: https://stackoverflow.com/a/50858058
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
