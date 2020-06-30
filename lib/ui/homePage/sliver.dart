@@ -4,12 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 
-class SilverAppBarWithTabBarScreen extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _SilverAppBarWithTabBarState createState() => _SilverAppBarWithTabBarState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _SilverAppBarWithTabBarState extends State<SilverAppBarWithTabBarScreen>
+class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   TabController controller;
 
@@ -25,6 +25,20 @@ class _SilverAppBarWithTabBarState extends State<SilverAppBarWithTabBarScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Container(
+          width: 80,
+          height: 80,
+          decoration:
+              BoxDecoration(shape: BoxShape.circle, color: Color(0xff3CB979)),
+          child: SvgPicture.asset(
+            "assets/Groupe 12.svg",
+            width: 37,
+            height: 37,
+          ),
+        ),
+      ),
       backgroundColor: Color(0xff161d24),
       body: CustomScrollView(
         slivers: <Widget>[
@@ -625,9 +639,7 @@ class SondageListElement extends StatelessWidget {
                         border: Border.all(color: Color(0xff44484F), width: 2),
                       ),
                       child: Column(
-                        children: <Widget>[
-
-                        ],
+                        children: <Widget>[],
                       ),
                     ),
                     Row(
