@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:wassil/ui/homePage/sliver.dart';
 //import 'package:wassil/ui/homePage/homePage.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      MyApp(),
+    );
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
