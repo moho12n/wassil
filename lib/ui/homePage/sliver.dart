@@ -134,200 +134,202 @@ class _SilverAppBarWithTabBarState extends State<SilverAppBarWithTabBarScreen>
                 Container(
                     //height: MediaQuery.of(context).size.height - 300,
                     child: ListView.builder(itemBuilder: (context, item) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                            child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(
-                              width: 16,
-                            ),
-                            SvgPicture.asset(
-                              'assets/news.svg',
-                              height: 40,
-                              width: 40,
-                            ),
-                            SizedBox(
-                              width: 18,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width - 80,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: 6,
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                120,
-                                        child: new Text(
-                                          "Ministère de l'agriculture et du ...",
-                                          style: TextStyle(
-                                            fontFamily: "Montserrat",
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 14,
-                                            color: Color(0xffffffff),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: SizedBox(),
-                                      ),
-                                      InkWell(
-                                        onTap: () {},
-                                        child: SvgPicture.asset(
-                                          "assets/post_options.svg",
-                                          width: 4,
-                                          height: 16,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 13,
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 4,
-                                  ),
-                                  new Text(
-                                    "News",
-                                    style: TextStyle(
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                      color: Color(0xff8e9ba7),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 4,
-                                  ),
-                                  new Text(
-                                    "Programme nationale de reboisement Le Gouvernement a tenu, mercredi 14 août 2019, une réu…",
-                                    style: TextStyle(
-                                      fontFamily: "Segoe UI",
-                                      fontSize: 10,
-                                      color: Color(0xffc4ced8),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(right: 12),
-                                    height: 140,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        color: Colors.green,
-                                        border: Border.all(
-                                            color: Color(0xff44484F), width: 2),
-                                        image: DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image: NetworkImage(
-                                                "https://jooinn.com/images/building-project-1.jpg"))),
-                                  ),
-                                  Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.only(top: 16, left: 8),
-                                          child: InkWell(
-                                            onTap: () {},
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: <Widget>[
-                                                SvgPicture.asset(
-                                                  "assets/commenter.svg",
-                                                  width: 16,
-                                                  height: 16,
-                                                ),
-                                                SizedBox(
-                                                  width: 8,
-                                                ),
-                                                Center(
-                                                  child: Text(
-                                                    "Commenter",
-                                                    style: TextStyle(
-                                                      fontFamily: "Segoe UI",
-                                                      fontSize: 10,
-                                                      color: Color(0xffc4ced8),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 60,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.only(top: 16, left: 8),
-                                          child: InkWell(
-                                            onTap: () {},
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: <Widget>[
-                                                SvgPicture.asset(
-                                                  "assets/voir plus.svg",
-                                                  width: 16,
-                                                  height: 16,
-                                                ),
-                                                SizedBox(
-                                                  width: 8,
-                                                ),
-                                                Center(
-                                                  child: Text(
-                                                    "Voir plus",
-                                                    style: TextStyle(
-                                                      fontFamily: "Segoe UI",
-                                                      fontSize: 10,
-                                                      color: Color(0xffc4ced8),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                      ]),
-                                  SizedBox(
-                                    height: 10,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        )),
-                        Divider(
-                          color: Color(0xff44484F),
-                          thickness: 1.5,
-                        ),
-                      ],
-                    ),
-                  );
+                  return NewsListElement(
+                      "Ministère de l'agriculture et du ...",
+                      "Programme nationale de reboisement Le Gouvernement a tenu, mercredi 14 août 2019, une réu…",
+                      "https://jooinn.com/images/building-project-1.jpg");
                 })),
                 Center(child: Text("Tab two")),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NewsListElement extends StatelessWidget {
+  final String title;
+  final String description;
+  final String picture;
+  NewsListElement(this.title, this.description, this.picture);
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Column(
+        children: <Widget>[
+          Container(
+              child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                width: 16,
+              ),
+              SvgPicture.asset(
+                'assets/news.svg',
+                height: 40,
+                width: 40,
+              ),
+              SizedBox(
+                width: 18,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width - 80,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 6,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width - 120,
+                          child: new Text(
+                            title,
+                            style: TextStyle(
+                              fontFamily: "Montserrat",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xffffffff),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: SizedBox(),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: SvgPicture.asset(
+                            "assets/post_options.svg",
+                            width: 4,
+                            height: 16,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 13,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    new Text(
+                      "News",
+                      style: TextStyle(
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                        color: Color(0xff8e9ba7),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    new Text(
+                      description,
+                      style: TextStyle(
+                        fontFamily: "Segoe UI",
+                        fontSize: 10,
+                        color: Color(0xffc4ced8),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 12),
+                      height: 140,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: Colors.green,
+                          border:
+                              Border.all(color: Color(0xff44484F), width: 2),
+                          image: DecorationImage(
+                              fit: BoxFit.fill, image: NetworkImage(picture))),
+                    ),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top: 16, left: 8),
+                            child: InkWell(
+                              onTap: () {},
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  SvgPicture.asset(
+                                    "assets/commenter.svg",
+                                    width: 16,
+                                    height: 16,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      "Commenter",
+                                      style: TextStyle(
+                                        fontFamily: "Segoe UI",
+                                        fontSize: 10,
+                                        color: Color(0xffc4ced8),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 60,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 16, left: 8),
+                            child: InkWell(
+                              onTap: () {},
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  SvgPicture.asset(
+                                    "assets/voir plus.svg",
+                                    width: 16,
+                                    height: 16,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      "Voir plus",
+                                      style: TextStyle(
+                                        fontFamily: "Segoe UI",
+                                        fontSize: 10,
+                                        color: Color(0xffc4ced8),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ]),
+                    SizedBox(
+                      height: 10,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          )),
+          Divider(
+            color: Color(0xff44484F),
+            thickness: 1.5,
           ),
         ],
       ),
