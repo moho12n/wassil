@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wassil/ui/homePage/sliver.dart';
+import 'package:wassil/ui/homePage/homePage.dart';
 import 'package:wassil/ui/proposition/addPropositionScreen.dart';
 //import 'package:wassil/ui/homePage/homePage.dart';
 
@@ -29,6 +29,8 @@ class MyApp extends StatelessWidget {
                 color: ThemeColors.textColor3, fontFamily: 'Montserrat', fontSize: 12, fontWeight: FontWeight.w500),
             bodyText1: TextStyle(
                 color: ThemeColors.textColor2, fontFamily: 'Segoe UI', fontSize: 10, fontWeight: FontWeight.w400),
+            bodyText2: TextStyle(
+                color: ThemeColors.textColor1, fontFamily: 'Segoe UI', fontSize: 10, fontWeight: FontWeight.w600),
             button: TextStyle(
                 color: ThemeColors.textColor1, fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w500),
           )
@@ -47,4 +49,8 @@ class ThemeColors {
   static const Color textColor1 = Color(0xffffffff);
   static const Color textColor2 = Color(0xffC4CED8);
   static const Color textColor3 = Color(0xff8E9BA7);
+
+  static const Color purple = Color(0xff8C52B9);
+  static const Color amber = Color(0xffFBAF5D);
+  static const Color red = Color(0xffF0504C);
 }
