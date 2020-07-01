@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wassil/ui/homePage/homePage.dart';
 import 'package:wassil/ui/proposition/addPropositionScreen.dart';
-//import 'package:wassil/ui/homePage/homePage.dart';
-
+import 'package:wassil/ui/proposition/imagepick.dart';
 void main() => runApp(
       MyApp(),
     );
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
                 color: ThemeColors.textColor1, fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w500),
           )
       ),
-      home: HomePage(),
+      home: AddPropositionScreen(),
     );
   }
 }

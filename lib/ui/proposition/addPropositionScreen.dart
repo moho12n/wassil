@@ -2,6 +2,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:getflutter/getflutter.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:wassil/main.dart';
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_absolute_path/flutter_absolute_path.dart';
+
+List<Asset> images = List<Asset>();
+List<String> pathsList = List();
 
 class AddPropositionScreen extends StatefulWidget {
   @override
@@ -11,6 +21,81 @@ class AddPropositionScreen extends StatefulWidget {
 class _AddPropositionScreenState extends State<AddPropositionScreen> {
   String title;
   String contenu;
+  List<Asset> images = List<Asset>();
+  String _error = 'No Error Dectected';
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<File> getImageFileFromAssets(String path) async {
+    final byteData = await rootBundle.load('assets/$path');
+
+    final file = File('$path');
+    await file.writeAsBytes(byteData.buffer
+        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    return file;
+  }
+
+  Widget buildGridView() {
+    return GridView.count(
+      crossAxisCount: 1,
+      children: List.generate(pathsList.length, (index) {
+        File imageFile = File(pathsList[index]);
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Container(
+            height: 140,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                border:
+                    Border.all(color: ThemeColors.backgroundLight, width: 1),
+                image: DecorationImage(
+                    image: FileImage(imageFile), fit: BoxFit.fill)),
+          ),
+        );
+      }),
+    );
+  }
+
+  Future<void> loadAssets() async {
+    List<Asset> resultList = List<Asset>();
+    String error = 'No Error Dectected';
+
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: 300,
+        enableCamera: true,
+        selectedAssets: images,
+        cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
+        materialOptions: MaterialOptions(
+          actionBarColor: "#abcdef",
+          actionBarTitle: "Example App",
+          allViewTitle: "All Photos",
+          useDetailsView: false,
+          selectCircleStrokeColor: "#000000",
+        ),
+      );
+    } on Exception catch (e) {
+      error = e.toString();
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      pathsList.clear();
+      images = resultList;
+      _error = error;
+      resultList.forEach((f) async {
+        pathsList.add(await FlutterAbsolutePath.getAbsolutePath(f.identifier));
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -260,26 +345,39 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Center(
-                          child: Container(
-                            height: 51.00,
-                            width: MediaQuery.of(context).size.width - 24,
-                            decoration: BoxDecoration(
-                              color: Color(0xff0e1317),
-                              border: Border.all(
-                                width: 2.00,
-                                color: Color(0xff44484f),
-                              ),
-                              borderRadius: BorderRadius.circular(12.00),
+                        Column(
+                          children: <Widget>[
+                            Center(
+                              child: Container(
+                                  height: pathsList.length.toDouble() * 400,
+                                  width: MediaQuery.of(context).size.width - 24,
+                                  child: buildGridView()),
                             ),
-                            child: Center(
-                              child: SvgPicture.asset(
-                                "assets/Show more.svg",
-                                width: 32,
-                                height: 32,
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: Center(
+                            child: InkWell(
+                              onTap: loadAssets,
+                              child: Container(
+                                height: 51.00,
+                                width: MediaQuery.of(context).size.width - 24,
+                                decoration: BoxDecoration(
+                                  color: Color(0xff0e1317),
+                                  border: Border.all(
+                                    width: 2.00,
+                                    color: Color(0xff44484f),
+                                  ),
+                                  borderRadius: BorderRadius.circular(12.00),
+                                ),
+                                child: Center(
+                                  child: SvgPicture.asset(
+                                    "assets/Show more.svg",
+                                    width: 32,
+                                    height: 32,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
