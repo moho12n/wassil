@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage>
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              backgroundColor: ThemeColors.backgroundLighter,
+              backgroundColor: ThemeColors.backgroundLight,
               pinned: true,
               snap: true,
               floating: true,
@@ -62,32 +62,25 @@ class _HomePageState extends State<HomePage>
                             height: 28.000003814697266,
                             width: 28,
                           ),
-                          Expanded(
-                            child: SizedBox(),
-                          ),
+                          Spacer(),
                           new Container(
                             height: 28.00,
                             width: 140.00,
+                            padding: EdgeInsets.symmetric(horizontal: 14),
                             decoration: BoxDecoration(
                               color: Color(0xff161d24),
-                              borderRadius: BorderRadius.circular(28.00),
+                              borderRadius: BorderRadius.circular(14.00),
                             ),
                             child: Center(
-                              child: new Text(
+                              child: Text(
                                 "30 May 2020",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: "Montserrat",
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  color: Color(0xffc4ced8),
-                                ),
+                                style: Theme.of(context).textTheme.headline4,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: SizedBox(),
-                          ),
+                          Spacer(),
                           Container(
                             height: 28.00,
                             width: 28.00,
@@ -144,12 +137,14 @@ class _HomePageState extends State<HomePage>
                     Row(
                       children: <Widget>[
                         /// Local Tabbar
-                        GestureDetector(
+                        InkWell(
                           onTap: () {
                             setState(() {
                               controller.index = 0;
                             });
                           },
+                          splashColor: ThemeColors.backgroundLighter,
+                          highlightColor: ThemeColors.backgroundLighter,
                           child: Container(
                             alignment: Alignment.center,
                             color: Colors.transparent,
@@ -170,12 +165,7 @@ class _HomePageState extends State<HomePage>
                                           Text(
                                             'Local',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: ThemeColors.textColor1,
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                            ),
+                                            style: Theme.of(context).textTheme.headline1,
                                           ),
                                         ],
                                       )
@@ -192,12 +182,7 @@ class _HomePageState extends State<HomePage>
                                           Text(
                                             'Local',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: ThemeColors.textColor3,
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                            style: Theme.of(context).textTheme.headline2,
                                           )
                                         ],
                                       )),
@@ -205,12 +190,14 @@ class _HomePageState extends State<HomePage>
                         ),
 
                         /// National Tabbar
-                        GestureDetector(
+                        InkWell(
                           onTap: () {
                             setState(() {
                               controller.index = 1;
                             });
                           },
+                          splashColor: ThemeColors.backgroundLighter,
+                          highlightColor: ThemeColors.backgroundLighter,
                           child: Container(
                             alignment: Alignment.center,
                             color: Colors.transparent,
@@ -231,12 +218,7 @@ class _HomePageState extends State<HomePage>
                                           Text(
                                             'National',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: ThemeColors.textColor1,
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                            ),
+                                            style: Theme.of(context).textTheme.headline1,
                                           ),
                                         ],
                                       )
@@ -253,12 +235,7 @@ class _HomePageState extends State<HomePage>
                                           Text(
                                             'National',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: ThemeColors.textColor2,
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                            style: Theme.of(context).textTheme.headline2,
                                           )
                                         ],
                                       )),

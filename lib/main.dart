@@ -16,6 +16,22 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
+          textTheme: TextTheme(
+            headline1: TextStyle(
+                color: ThemeColors.textColor1, fontFamily: 'Montserrat', fontSize: 14, fontWeight: FontWeight.w500),
+            headline2: TextStyle(
+                color: ThemeColors.textColor2, fontFamily: 'Montserrat', fontSize: 14, fontWeight: FontWeight.w500),
+            headline3: TextStyle(
+                color: ThemeColors.textColor3, fontFamily: 'Montserrat', fontSize: 14, fontWeight: FontWeight.w500),
+            headline4: TextStyle(
+                color: ThemeColors.textColor2, fontFamily: 'Montserrat', fontSize: 12, fontWeight: FontWeight.w500),
+            headline5: TextStyle(
+                color: ThemeColors.textColor3, fontFamily: 'Montserrat', fontSize: 12, fontWeight: FontWeight.w500),
+            bodyText1: TextStyle(
+                color: ThemeColors.textColor2, fontFamily: 'Segoe UI', fontSize: 10, fontWeight: FontWeight.w400),
+            button: TextStyle(
+                color: ThemeColors.textColor1, fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w500),
+          )
       ),
       home: HomePage(),
     );
@@ -26,7 +42,8 @@ class MyApp extends StatelessWidget {
 class ThemeColors {
   static const Color mainGreen = Color(0xff3CB979);
   static const Color background = Color(0xff161D24);
-  static const Color backgroundLighter = Color(0xff44484F);
+  static const Color backgroundLight = Color(0xff44484F);
+  static const Color backgroundLighter = Color(0xff63676f);
   static const Color textColor1 = Color(0xffffffff);
   static const Color textColor2 = Color(0xffC4CED8);
   static const Color textColor3 = Color(0xff8E9BA7);
