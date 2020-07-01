@@ -23,4 +23,8 @@ class Post {
   ];
 
   Post(this.title, this.institution, this.description);
+
+  fetchPost() {
+    // todo: make a function that fetches the posts in the lists
+  }
 }
