@@ -345,15 +345,19 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                             ),
                           ),
                         ),
-                        Column(
-                          children: <Widget>[
-                            Center(
-                              child: Container(
-                                  height: pathsList.length.toDouble() * 400,
-                                  width: MediaQuery.of(context).size.width - 24,
-                                  child: buildGridView()),
-                            ),
-                          ],
+                        SingleChildScrollView(
+                          primary: false,
+                          child: Column(
+                            children: <Widget>[
+                              Center(
+                                child: Container(
+                                    height: pathsList.length.toDouble() * 380,
+                                    width:
+                                        MediaQuery.of(context).size.width - 24,
+                                    child: buildGridView()),
+                              ),
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16.0),
@@ -383,7 +387,7 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 80,
+                          height: 16,
                         )
                       ],
                     ),
