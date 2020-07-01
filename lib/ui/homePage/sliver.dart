@@ -1,7 +1,7 @@
-
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
+import 'package:wassil/main.dart';
 import 'package:getflutter/getflutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,17 +14,18 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
-    super.initState();
     controller = TabController(
       length: 2,
       vsync: this,
     );
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      // todo: take care of this later
+      /*floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Container(
           width: 80,
@@ -37,126 +38,255 @@ class _HomePageState extends State<HomePage>
             height: 37,
           ),
         ),
-      ),
-      backgroundColor: Color(0xff161d24),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            backgroundColor: Color(0xff44484F),
-            pinned: true,
-            snap: true,
-            floating: true,
-            expandedHeight: 160.0,
-            // **Is it intended ?** flexibleSpace.title overlaps with tabs title.
-            flexibleSpace: FlexibleSpaceBar(
-              background: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 24,
-                  ),
-                  Row(
+      ),*/
+      backgroundColor: ThemeColors.background,
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              backgroundColor: ThemeColors.backgroundLighter,
+              pinned: true,
+              snap: true,
+              floating: true,
+              expandedHeight: 198.0,
+              // **Is it intended ?** flexibleSpace.title overlaps with tabs title.
+              flexibleSpace: FlexibleSpaceBar(
+                background: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
                     children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          SvgPicture.asset(
+                            'assets/left_menu.svg',
+                            height: 28.000003814697266,
+                            width: 28,
+                          ),
+                          Expanded(
+                            child: SizedBox(),
+                          ),
+                          new Container(
+                            height: 28.00,
+                            width: 140.00,
+                            decoration: BoxDecoration(
+                              color: Color(0xff161d24),
+                              borderRadius: BorderRadius.circular(28.00),
+                            ),
+                            child: Center(
+                              child: new Text(
+                                "30 May 2020",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                  color: Color(0xffc4ced8),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: SizedBox(),
+                          ),
+                          Container(
+                            height: 28.00,
+                            width: 28.00,
+                            decoration: BoxDecoration(
+                              color: Color(0xff161d24),
+                              borderRadius: BorderRadius.circular(28.00),
+                            ),
+                          ),
+                        ],
+                      ),
                       SizedBox(
-                        width: 12,
+                        height: 14,
                       ),
-                      SvgPicture.asset(
-                        'assets/left_menu.svg',
-                        height: 28.000003814697266,
-                        width: 28,
-                      ),
-                      Expanded(
-                        child: SizedBox(),
-                      ),
-                      new Container(
-                        height: 28.00,
-                        width: 140.00,
+                      Container(
+                        height: 48.00,
+                        width: 108.34,
                         decoration: BoxDecoration(
-                          color: Color(0xff161d24),
-                          borderRadius: BorderRadius.circular(28.00),
-                        ),
-                        child: Center(
-                          child: new Text(
-                            "30 May 2020",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Color(0xffc4ced8),
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage(
+                              "assets/Logo.png",
                             ),
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: SizedBox(),
-                      ),
-                      new Container(
-                        height: 28.00,
-                        width: 28.00,
-                        decoration: BoxDecoration(
-                          color: Color(0xff161d24),
-                          borderRadius: BorderRadius.circular(28.00),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 12,
-                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 14,
-                  ),
-                  new Container(
-                    height: 48.00,
-                    width: 108.34,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                          "assets/Logo.png",
-                        ),
+                ),
+              ),
+
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(90),
+                child: Theme(
+                  data: Theme.of(context).copyWith(accentColor: Colors.white),
+                  child: Stack(children: <Widget>[
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.easeInOutQuart,
+                      margin: EdgeInsets.only(
+                        top: (90 / 2) + 34,
+                        left: (controller.index == 0)?
+                        Offset(MediaQuery.of(context).size.width / 4, 206.0)
+                            .dx -
+                            36 / 2 : Offset((MediaQuery.of(context).size.width / 4)*3, 206.0)
+                            .dx -
+                            56 / 2 ,
                       ),
+                      height: 3,
+                      width: (controller.index == 0)? 36: 56,
+                      decoration: BoxDecoration(
+                          color: ThemeColors.mainGreen,
+                          borderRadius: BorderRadius.circular(100)),
                     ),
+                    Row(
+                      children: <Widget>[
+                        /// Local Tabbar
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              controller.index = 0;
+                            });
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            color: Colors.transparent,
+                            height: 90,
+                            width: (MediaQuery.of(context).size.width) / 2,
+                            child: Center(
+                                child: (controller.index == 0)
+                                    ? Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Image(
+                                            height: 40,
+                                            image: AssetImage(
+                                              'assets/png/localActive.png',
+                                            ),
+                                          ),
+                                          SizedBox(height: 6,),
+                                          Text(
+                                            'Local',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: ThemeColors.textColor1,
+                                              fontFamily: 'Montserrat',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Image(
+                                            height: 40,
+                                            image: AssetImage(
+                                              'assets/png/local.png',
+                                            ),
+                                          ),
+                                          SizedBox(height: 6,),
+                                          Text(
+                                            'Local',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: ThemeColors.textColor3,
+                                              fontFamily: 'Montserrat',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          )
+                                        ],
+                                      )),
+                          ),
+                        ),
+
+                        /// National Tabbar
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              controller.index = 1;
+                            });
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            color: Colors.transparent,
+                            height: 90,
+                            width: (MediaQuery.of(context).size.width) / 2,
+                            child: Center(
+                                child: (controller.index == 1)
+                                    ? Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Image(
+                                            height: 40,
+                                            image: AssetImage(
+                                              'assets/png/nationalActive.png',
+                                            ),
+                                          ),
+                                          SizedBox(height: 6,),
+                                          Text(
+                                            'National',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: ThemeColors.textColor1,
+                                              fontFamily: 'Montserrat',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Image(
+                                            height: 40,
+                                            image: AssetImage(
+                                              'assets/png/national.png',
+                                            ),
+                                          ),
+                                          SizedBox(height: 6,),
+                                          Text(
+                                            'National',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: ThemeColors.textColor2,
+                                              fontFamily: 'Montserrat',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          )
+                                        ],
+                                      )),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]),
+                ),
+              ),
+            ),
+            // SliverList(
+            SliverFillRemaining(
+              child: TabBarView(
+                controller: controller,
+                children: <Widget>[
+                  /// todo: add page
+                  Container(
+                    color: Colors.red,
                   ),
-                  SizedBox(
-                    height: 16,
+                  Container(
+                    color: Colors.blue,
                   ),
                 ],
               ),
             ),
-
-            bottom: TabBar(
-              tabs: [
-                Tab(
-                  text: 'Local',
-                  icon: Icon(Icons.access_alarm),
-                ),
-                Tab(
-                  text: 'Tab 2',
-                  icon: Icon(Icons.access_alarm),
-                ),
-              ],
-              controller: controller,
-            ),
-          ),
-          // SliverList(
-          SliverFillRemaining(
-            child: TabBarView(
-              controller: controller,
-              children: <Widget>[
-                Container(
-                    //height: MediaQuery.of(context).size.height - 300,
-                    child: ListView.builder(itemBuilder: (context, item) {
-                  return SondageListElement(
-                      "Ministère de l'agriculture et du ...",
-                      "Programme nationale de reboisement Le Gouvernement a tenu, mercredi 14 août 2019, une réu…",
-                      "https://jooinn.com/images/building-project-1.jpg");
-                })),
-                Center(child: Text("Tab two")),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -166,10 +296,11 @@ class NewsListElement extends StatelessWidget {
   final String title;
   final String description;
   final String picture;
+
   NewsListElement(this.title, this.description, this.picture);
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Column(
@@ -354,7 +485,9 @@ class ProjectListElement extends StatelessWidget {
   final String title;
   final String description;
   final String picture;
+
   ProjectListElement(this.title, this.description, this.picture);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -542,7 +675,9 @@ class SondageListElement extends StatelessWidget {
   final String title;
   final String description;
   final String picture;
+
   SondageListElement(this.title, this.description, this.picture);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
