@@ -31,7 +31,6 @@ dev_dependencies:
   flutter_svg: 0.17.3+1
   toggle_switch: "^0.1.4"
   multi_image_picker: ^4.6.7
-  flutter_absolute_path: ^1.0.6
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

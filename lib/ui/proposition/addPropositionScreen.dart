@@ -8,7 +8,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_absolute_path/flutter_absolute_path.dart';
+//import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 
 List<Asset> images = List<Asset>();
 List<String> pathsList = List();
@@ -90,9 +90,9 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
       pathsList.clear();
       images = resultList;
       _error = error;
-      resultList.forEach((f) async {
+      /*resultList.forEach((f) async {
         pathsList.add(await FlutterAbsolutePath.getAbsolutePath(f.identifier));
-      });
+      });*/
     });
   }
 

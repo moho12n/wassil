@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wassil/ui/homePage/homePage.dart';
+import 'package:wassil/ui/homePage/homeScreen.dart';
 import 'package:wassil/ui/proposition/addPropositionScreen.dart';
 import 'package:wassil/ui/proposition/imagepick.dart';
 void main() => runApp(
@@ -34,10 +34,34 @@ class MyApp extends StatelessWidget {
                 color: ThemeColors.textColor1, fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w500),
           )
       ),
-      home: AddPropositionScreen(),
+      home: HomePage(),
     );
   }
 }
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  TabController controller;
+
+  @override
+  void initState() {
+    controller = TabController(length: 2, vsync: this, initialIndex: 0);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(children: <Widget>[
+        DrawerScreen(),
+        HomeScreen(),
+      ],),
+    );}}
 
 // Colors
 class ThemeColors {
