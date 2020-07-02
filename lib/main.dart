@@ -158,16 +158,42 @@ class _HomePageState extends State<HomePage>
 
 // Colors
 class ThemeColors {
-  static const Color mainGreen = Color(0xff3CB979);
-  static const Color backgroundDark = Color(0xff0E1317);
-  static const Color background = Color(0xff161D24);
-  static const Color backgroundLight = Color(0xff44484F);
-  static const Color backgroundLighter = Color(0xff63676f);
-  static const Color textColor1 = Color(0xffffffff);
-  static const Color textColor2 = Color(0xffC4CED8);
-  static const Color textColor3 = Color(0xff8E9BA7);
+  static bool nightMode = false;
+  static Color mainGreen = Color(0xff3CB979);
+  static Color backgroundDark = Color(0xff0E1317);
+  static Color background = Color(0xff161D24);
+  static Color backgroundLight = Color(0xff44484F);
+  static Color backgroundLighter = Color(0xff63676f);
+  static Color textColor1 = Color(0xffffffff);
+  static Color textColor2 = Color(0xffC4CED8);
+  static Color textColor3 = Color(0xff8E9BA7);
 
-  static const Color purple = Color(0xff8C52B9);
-  static const Color amber = Color(0xffFBAF5D);
-  static const Color red = Color(0xffF0504C);
+  static Color purple = Color(0xff8C52B9);
+  static Color amber = Color(0xffFBAF5D);
+  static Color red = Color(0xffF0504C);
+
+  static void changeColorMode() {
+    if (ThemeColors.nightMode == false) {
+      ThemeColors.nightMode = true;
+      ThemeColors.backgroundDark = Color(0xff0E1317);
+      ThemeColors.background = Color(0xff161D24);
+      ThemeColors.backgroundLight = Color(0xff44484F);
+      ThemeColors.backgroundLighter = Color(0xff63676f);
+      ThemeColors.textColor1 = Color(0xffffffff);
+      ThemeColors.textColor2 = Color(0xffC4CED8);
+      ThemeColors.textColor3 = Color(0xff8E9BA7);
+      return;
+    }
+    else {
+      ThemeColors.nightMode = false;
+      ThemeColors.backgroundDark = Color(0xffffffff);
+      ThemeColors.background = Color(0xffC4CED8);
+      ThemeColors.backgroundLight = Color(0xff3CB979);
+      ThemeColors.backgroundLighter = Color(0xff8E9BA7);
+      ThemeColors.textColor1 = Color(0xff0E1317);
+      ThemeColors.textColor2 = Color(0xff161D24);
+      ThemeColors.textColor3 = Color(0xff44484F);
+      return;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wassil/main.dart';
+import 'customSwitch.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:getflutter/getflutter.dart';
@@ -24,6 +25,8 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
   String contenu;
   List<Asset> images = List<Asset>();
   String _error = 'No Error Dectected';
+  bool ideeProbleme = false, localNational = false;
+
   @override
   void initState() {
     super.initState();
@@ -118,21 +121,18 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                       width: 24,
                     ),
                     GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pop(context);
                         },
-                        child: SvgPicture.asset("assets/arrow-left (1).svg", width: 19)),
+                        child: SvgPicture.asset("assets/arrow-left (1).svg",
+                            width: 19)),
                     SizedBox(
                       width: 16,
                     ),
                     Text(
                       "Exprimez-vous",
-                      style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: ThemeColors.textColor1,
-                      ),
+                      style: Theme.of(context).textTheme.headline1,
+                      textScaleFactor: 1.4,
                     ),
                     Expanded(
                       child: SizedBox(),
@@ -166,247 +166,556 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                           SizedBox(
                             height: 14,
                           ),
+                          // todo: khdam b hada f blasset toggle switch
                           Center(
-                            child: ToggleSwitch(
-                              cornerRadius: 63,
-                              minWidth: 90.0,
-                              initialLabelIndex: 2,
-                              activeBgColor: ThemeColors.mainGreen,
-                              activeTextColor: Colors.white,
-                              inactiveBgColor: ThemeColors.backgroundDark,
-                              inactiveTextColor: Colors.white,
-                              labels: ['idee', 'Probleme'],
-                              onToggle: (index) {
-                                print('switched to: $index');
-                              },
+                            child: Transform.scale(
+                              scale: 1.2,
+                              child: RoundedCheckBox(
+                                onChanged: (index) {
+                                  setState(() {
+                                    ideeProbleme = index;
+                                  });
+                                },
+                                yesNoText: true,
+                                initialState: ideeProbleme,
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: 14,
                           ),
-                          Divider(
-                            color: ThemeColors.backgroundLight,
-                            thickness: 1,
-                            height: 0,
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12.0),
-                            child: Text(
-                              "Titre",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                color: ThemeColors.textColor1,
+
+                          /// page 1 Proposition d'idée
+                          !ideeProbleme? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Divider(
+                                color: ThemeColors.backgroundLight,
+                                thickness: 1,
+                                height: 0,
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Center(
-                            child: Container(
-                              height: 51.00,
-                              width: MediaQuery.of(context).size.width - 24,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: ThemeColors.backgroundLight),
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(10.00),
+                              SizedBox(
+                                height: 16,
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 15.0),
-                                child: TextField(
-                                  keyboardType: TextInputType.text,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: 'Montserrat',
-                                      color: Colors.white),
-                                  cursorColor: ThemeColors.mainGreen,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "",
-                                    hintStyle: TextStyle(
-                                      fontFamily: "Montserrat",
-                                      fontSize: 17,
-                                      color: Color(0xff707070).withOpacity(0.50),
-                                    ),
-                                  ),
-                                  onChanged: (input) {
-                                    setState(() {
-                                      title = input;
-                                    });
-                                  },
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Titre",
+                                  style: Theme.of(context).textTheme.headline1,
                                 ),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 14,
-                          ),
-                          Divider(
-                            color: ThemeColors.backgroundLight,
-                            thickness: 1,
-                            height: 0,
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12.0),
-                            child: Text(
-                              "Contenu",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                color: Color(0xffffffff),
+                              SizedBox(
+                                height: 16,
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Center(
-                            child: Container(
-                              height: 180.00,
-                              width: MediaQuery.of(context).size.width - 24,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xff44484F)),
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(10.00),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 15.0),
-                                child: TextField(
-                                  maxLines: 10,
-                                  keyboardType: TextInputType.text,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: 'Montserrat',
-                                      color: Colors.white),
-                                  cursorColor: Color(0xff5acfc3),
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "",
-                                    hintStyle: TextStyle(
-                                      fontFamily: "Montserrat",
-                                      fontSize: 17,
-                                      color: Color(0xff707070).withOpacity(0.50),
+                              Center(
+                                child: Container(
+                                  height: 51.00,
+                                  width: MediaQuery.of(context).size.width - 24,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: ThemeColors.backgroundLight),
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10.00),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 15.0),
+                                    child: TextField(
+                                      keyboardType: TextInputType.text,
+                                      style:
+                                          Theme.of(context).textTheme.headline4,
+                                      cursorColor: ThemeColors.mainGreen,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText:
+                                            "Donnez un titre au proposition",
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
+                                      onChanged: (input) {
+                                        setState(() {
+                                          title = input;
+                                        });
+                                      },
                                     ),
                                   ),
-                                  onChanged: (input) {
-                                    setState(() {
-                                      title = input;
-                                    });
-                                  },
                                 ),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 14,
-                          ),
-                          Divider(
-                            color: ThemeColors.backgroundLight,
-                            thickness: 1,
-                            height: 0,
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12.0),
-                            child: Text(
-                              "Ajouter des photos",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                color: Color(0xffffffff),
+                              SizedBox(
+                                height: 14,
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16.0),
-                            child: Center(
-                              child: InkWell(
-                                onTap: loadAssets,
-                                child: (){
-                                  if (pathsList.length == 0) {
-                                    return Container(
-                                      height: 50.00,
-                                      width: MediaQuery.of(context).size.width - 24,
-                                      decoration: BoxDecoration(
-                                        color: ThemeColors.backgroundDark,
-                                        border: Border.all(
-                                          width: 1.00,
-                                          color: ThemeColors.backgroundLight,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12.00),
-                                      ),
-                                      child: Center(
-                                        child: SvgPicture.asset(
-                                          "assets/Show more.svg",
-                                          width: 32,
-                                          height: 32,
-                                        ),
-                                      ),
-                                    );
-                                  } else if (pathsList.length == 1) {
-                                    return Container(
-                                      height: 180.00,
-                                      width: MediaQuery.of(context).size.width - 24,
-                                      decoration: BoxDecoration(
-                                        color: ThemeColors.backgroundDark,
-                                        border: Border.all(
-                                          width: 1.00,
-                                          color: ThemeColors.backgroundLight,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12.00),
-                                      ),
-                                      child: Image(fit: BoxFit.cover,
-                                          image: AssetImage(pathsList[0])),
-                                    );
-                                  } else if (pathsList.length == 2) {
-                                    return Container(
-                                      height: 180.00,
-                                      width: MediaQuery.of(context).size.width - 24,
-                                      decoration: BoxDecoration(
-                                        color: ThemeColors.backgroundDark,
-                                        border: Border.all(
-                                          width: 1.00,
-                                          color: ThemeColors.backgroundLight,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12.00),
-                                      ),
-                                      child: Image(fit: BoxFit.cover,
-                                          image: AssetImage(pathsList[0])),
-                                    );
-                                  } else {
-                                    return Container(
-                                      height: 180.00,
-                                      width: MediaQuery.of(context).size.width - 24,
-                                      decoration: BoxDecoration(
-                                        color: ThemeColors.backgroundDark,
-                                        border: Border.all(
-                                          width: 1.00,
-                                          color: ThemeColors.backgroundLight,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12.00),
-                                      ),
-                                      child: Image(fit: BoxFit.cover,
-                                          image: AssetImage(pathsList[0])),
-                                    );
-                                  }
-                                }(),
+                              Divider(
+                                color: ThemeColors.backgroundLight,
+                                thickness: 1,
+                                height: 0,
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 16,
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Contenu",
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Center(
+                                child: Container(
+                                  height: 140.00,
+                                  width: MediaQuery.of(context).size.width - 24,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: ThemeColors.backgroundLight),
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10.00),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 15.0),
+                                    child: TextField(
+                                      maxLines: 10,
+                                      keyboardType: TextInputType.text,
+                                      style:
+                                          Theme.of(context).textTheme.headline4,
+                                      cursorColor: ThemeColors.mainGreen,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText:
+                                            "Décrivez la proposition",
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
+                                      onChanged: (input) {
+                                        setState(() {
+                                          title = input;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 14,
+                              ),
+                              Divider(
+                                color: ThemeColors.backgroundLight,
+                                thickness: 1,
+                                height: 0,
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Ajouter des photos",
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 16.0),
+                                child: Center(
+                                  child: InkWell(
+                                    onTap: loadAssets,
+                                    child: () {
+                                      if (pathsList.length == 0) {
+                                        return Container(
+                                          height: 50.00,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              24,
+                                          decoration: BoxDecoration(
+                                            color: ThemeColors.backgroundDark,
+                                            border: Border.all(
+                                              width: 1.00,
+                                              color:
+                                                  ThemeColors.backgroundLight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.00),
+                                          ),
+                                          child: Center(
+                                            child: SvgPicture.asset(
+                                              "assets/Show more.svg",
+                                              width: 32,
+                                              height: 32,
+                                            ),
+                                          ),
+                                        );
+                                      } else if (pathsList.length == 1) {
+                                        return Container(
+                                          height: 180.00,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              24,
+                                          decoration: BoxDecoration(
+                                            color: ThemeColors.backgroundDark,
+                                            border: Border.all(
+                                              width: 1.00,
+                                              color:
+                                                  ThemeColors.backgroundLight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.00),
+                                          ),
+                                          child: Image(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(pathsList[0])),
+                                        );
+                                      } else if (pathsList.length == 2) {
+                                        return Container(
+                                          height: 180.00,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              24,
+                                          decoration: BoxDecoration(
+                                            color: ThemeColors.backgroundDark,
+                                            border: Border.all(
+                                              width: 1.00,
+                                              color:
+                                                  ThemeColors.backgroundLight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.00),
+                                          ),
+                                          child: Image(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(pathsList[0])),
+                                        );
+                                      } else {
+                                        return Container(
+                                          height: 180.00,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              24,
+                                          decoration: BoxDecoration(
+                                            color: ThemeColors.backgroundDark,
+                                            border: Border.all(
+                                              width: 1.00,
+                                              color:
+                                                  ThemeColors.backgroundLight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.00),
+                                          ),
+                                          child: Image(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(pathsList[0])),
+                                        );
+                                      }
+                                    }(),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 88,
+                              )
+                            ],
+                          )
+
+                          /// page 2 Signaler un probleme
+                          : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Divider(
+                                color: ThemeColors.backgroundLight,
+                                thickness: 1,
+                                height: 0,
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Titre",
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Center(
+                                child: Container(
+                                  height: 51.00,
+                                  width: MediaQuery.of(context).size.width - 24,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: ThemeColors.backgroundLight),
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10.00),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 15.0),
+                                    child: TextField(
+                                      keyboardType: TextInputType.text,
+                                      style:
+                                          Theme.of(context).textTheme.headline4,
+                                      cursorColor: ThemeColors.mainGreen,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText:
+                                            "Donnez un titre au problème",
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
+                                      onChanged: (input) {
+                                        setState(() {
+                                          title = input;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 14,
+                              ),
+                              Divider(
+                                color: ThemeColors.backgroundLight,
+                                thickness: 1,
+                                height: 0,
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Contenu",
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Center(
+                                child: Container(
+                                  height: 140.00,
+                                  width: MediaQuery.of(context).size.width - 24,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: ThemeColors.backgroundLight),
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10.00),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 15.0),
+                                    child: TextField(
+                                      maxLines: 10,
+                                      keyboardType: TextInputType.text,
+                                      style:
+                                      Theme.of(context).textTheme.headline4,
+                                      cursorColor: ThemeColors.mainGreen,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText:
+                                        "Décrivez le problème",
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
+                                      onChanged: (input) {
+                                        setState(() {
+                                          title = input;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 14,
+                              ),
+                              Divider(
+                                color: ThemeColors.backgroundLight,
+                                thickness: 1,
+                                height: 0,
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Solution proposée",
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Center(
+                                child: Container(
+                                  height: 140.00,
+                                  width: MediaQuery.of(context).size.width - 24,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: ThemeColors.backgroundLight),
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10.00),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 15.0),
+                                    child: TextField(
+                                      maxLines: 10,
+                                      keyboardType: TextInputType.text,
+                                      style:
+                                      Theme.of(context).textTheme.headline4,
+                                      cursorColor: ThemeColors.mainGreen,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText:
+                                        "Quelle solution proposez-vous?",
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
+                                      onChanged: (input) {
+                                        setState(() {
+                                          title = input;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 14,
+                              ),
+                              Divider(
+                                color: ThemeColors.backgroundLight,
+                                thickness: 1,
+                                height: 0,
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Ajouter des photos",
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 16.0),
+                                child: Center(
+                                  child: InkWell(
+                                    onTap: loadAssets,
+                                    child: () {
+                                      if (pathsList.length == 0) {
+                                        return Container(
+                                          height: 50.00,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              24,
+                                          decoration: BoxDecoration(
+                                            color: ThemeColors.backgroundDark,
+                                            border: Border.all(
+                                              width: 1.00,
+                                              color:
+                                                  ThemeColors.backgroundLight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.00),
+                                          ),
+                                          child: Center(
+                                            child: SvgPicture.asset(
+                                              "assets/Show more.svg",
+                                              width: 32,
+                                              height: 32,
+                                            ),
+                                          ),
+                                        );
+                                      } else if (pathsList.length == 1) {
+                                        return Container(
+                                          height: 180.00,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              24,
+                                          decoration: BoxDecoration(
+                                            color: ThemeColors.backgroundDark,
+                                            border: Border.all(
+                                              width: 1.00,
+                                              color:
+                                                  ThemeColors.backgroundLight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.00),
+                                          ),
+                                          child: Image(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(pathsList[0])),
+                                        );
+                                      } else if (pathsList.length == 2) {
+                                        return Container(
+                                          height: 180.00,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              24,
+                                          decoration: BoxDecoration(
+                                            color: ThemeColors.backgroundDark,
+                                            border: Border.all(
+                                              width: 1.00,
+                                              color:
+                                                  ThemeColors.backgroundLight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.00),
+                                          ),
+                                          child: Image(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(pathsList[0])),
+                                        );
+                                      } else {
+                                        return Container(
+                                          height: 180.00,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              24,
+                                          decoration: BoxDecoration(
+                                            color: ThemeColors.backgroundDark,
+                                            border: Border.all(
+                                              width: 1.00,
+                                              color:
+                                                  ThemeColors.backgroundLight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.00),
+                                          ),
+                                          child: Image(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(pathsList[0])),
+                                        );
+                                      }
+                                    }(),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 88,
+                              )
+                            ],
                           )
                         ],
                       ),
@@ -424,10 +733,10 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [
-                      ThemeColors.background.withOpacity(0.0),
-                      ThemeColors.background.withOpacity(0.67),
-                      ThemeColors.background,
-                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                  ThemeColors.background.withOpacity(0.0),
+                  ThemeColors.background.withOpacity(0.67),
+                  ThemeColors.background,
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
               ),
             ),
 
@@ -447,12 +756,8 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                     child: new Text(
                       "ENVOYER",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 22,
-                        color: ThemeColors.textColor1,
-                      ),
+                      style: Theme.of(context).textTheme.headline1,
+                      textScaleFactor: 1.4,
                     ),
                   ),
                 ),

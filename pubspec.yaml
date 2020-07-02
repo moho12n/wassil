@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  font_awesome_flutter: ^8.8.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -29,7 +30,6 @@ dev_dependencies:
     sdk: flutter
   getflutter: ^1.0.11
   flutter_svg: 0.17.3+1
-  toggle_switch: "^0.1.4"
   multi_image_picker: ^4.6.7
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -55,6 +55,13 @@ flutter:
   assets:
      - assets/
      - assets/img/pdp.jpg
+     - assets/img/news1.jpg
+     - assets/img/news_local1.jpg
+     - assets/img/projet1.jpg
+     - assets/img/projet2.jpg
+     - assets/img/projet3.jpg
+     - assets/img/projet4.jpg
+     - assets/img/projet_local1.jpg
      - assets/png/local.png
      - assets/png/localActive.png
      - assets/png/national.png

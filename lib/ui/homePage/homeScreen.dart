@@ -7,6 +7,7 @@ import 'package:wassil/models/postPoll.dart';
 import 'package:wassil/models/postProject.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback toggle;
@@ -29,9 +30,6 @@ class _HomeScreenState extends State<HomeScreen>
     controller = TabController(length: 2, vsync: this, initialIndex: 0);
     super.initState();
   }
-
-  // todo: take care of this later
-  /**/
 
   @override
   Widget build(BuildContext context) {
@@ -260,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen>
                               height: 28.00,
                               width: 28.00,
                               decoration: BoxDecoration(
-                                color: Color(0xff161d24),
+                                color: ThemeColors.background,
                                 borderRadius: BorderRadius.circular(28.00),
                               ),
                             ),
@@ -289,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen>
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(90),
                   child: Theme(
-                    data: Theme.of(context).copyWith(accentColor: Colors.white),
+                    data: Theme.of(context).copyWith(accentColor: ThemeColors.textColor1),
                     child: Stack(children: <Widget>[
                       AnimatedContainer(
                         duration: Duration(milliseconds: 400),

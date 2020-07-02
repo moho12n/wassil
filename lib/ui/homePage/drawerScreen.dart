@@ -176,7 +176,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 disabledColor: Colors.grey[350],
                 disabledTextColor: Colors.grey[500],
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    ThemeColors.changeColorMode();
+                  });
+                },
                 child: Row(
                   children: <Widget>[
                     Container(
@@ -197,12 +201,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       "Apparence",
                       textAlign: TextAlign.left,
                       style: Theme.of(context).textTheme.headline4,
-                    ),
-                    Spacer(),
-                    Icon(
-                      Icons.keyboard_arrow_right,
-                      size: 24,
-                      color: ThemeColors.textColor2,
                     ),
                   ],
                 )),
