@@ -31,20 +31,7 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   // todo: take care of this later
-  /*FloatingActionButton(
-        onPressed: () {},
-        child: Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle, color: ThemeColors.mainGreen),
-          child: SvgPicture.asset(
-            "assets/Groupe 12.svg",
-            width: 37,
-            height: 37,
-          ),
-        ),
-      ),*/
+  /**/
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen>
             spreadRadius: -12)
       ]),
       child: Stack(
-        alignment: Alignment.bottomCenter,
         children: <Widget>[
           CustomScrollView(
             slivers: <Widget>[
@@ -95,7 +81,174 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                               child: Center(
                                 child: Text(
-                                  "30 May 2020",
+                                  // TO IGNORE
+                                  () {
+                                    if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '01')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Janvier ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '02')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Février ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '03')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Mars ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '04')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Avril ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '05')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Mai ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '06')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Juin ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '07')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Juillet ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '08')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Août ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '09')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Septembre ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '10')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Octobre ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else if (DateTime.now()
+                                            .toUtc()
+                                            .toString()
+                                            .substring(5, 7) ==
+                                        '11')
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Novembre ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                    else
+                                      return (DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(0, 4) +
+                                          ' Decembre ' +
+                                          DateTime.now()
+                                              .toUtc()
+                                              .toString()
+                                              .substring(8, 10));
+                                  }(),
+
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.headline4,
                                   overflow: TextOverflow.ellipsis,
@@ -314,14 +467,45 @@ class _HomeScreenState extends State<HomeScreen>
           ),
 
           /// this is a gradient
-          Container(
-            height: 80,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-              ThemeColors.background.withOpacity(0.0),
-              ThemeColors.background,
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                ThemeColors.background.withOpacity(0.0),
+                ThemeColors.background.withOpacity(0.67),
+                ThemeColors.background,
+              ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            ),
+          ),
+
+          /// this is the main button
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              margin: EdgeInsets.all(16),
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: ThemeColors.mainGreen,
+                  boxShadow: [
+                    BoxShadow(
+                        color: ThemeColors.mainGreen,
+                        offset: Offset(0, 8),
+                        blurRadius: 16,
+                        spreadRadius: -12)
+                  ]),
+              child: FloatingActionButton(
+                backgroundColor: ThemeColors.mainGreen,
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/AddProposition");
+                },
+                child: Icon(Icons.edit),
+              ),
+            ),
           )
         ],
       ),

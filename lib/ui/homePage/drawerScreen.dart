@@ -349,11 +349,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       padding: EdgeInsets.all(6),
                       height: 32,
                       decoration: BoxDecoration(
-                          color: ThemeColors.mainGreen,
+                          color: ThemeColors.backgroundLight,
                           borderRadius: BorderRadius.circular(100)),
                       child: Image(
                           width: 20,
-                          image: AssetImage('assets/img/Vahk.png')),
+                          image: AssetImage('assets/img/pdp.jpg')),
                     ),
                     SizedBox(
                       width: 16,

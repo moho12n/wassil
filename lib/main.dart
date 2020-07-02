@@ -58,7 +58,9 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Montserrat',
                 fontSize: 16,
                 fontWeight: FontWeight.w500),
-          )),
+          ),),
+      routes: <String, WidgetBuilder>{
+    "/AddProposition": (BuildContext context) => new AddPropositionScreen(),},
       home: HomePage(),
     );
   }
@@ -157,6 +159,7 @@ class _HomePageState extends State<HomePage>
 // Colors
 class ThemeColors {
   static const Color mainGreen = Color(0xff3CB979);
+  static const Color backgroundDark = Color(0xff0E1317);
   static const Color background = Color(0xff161D24);
   static const Color backgroundLight = Color(0xff44484F);
   static const Color backgroundLighter = Color(0xff63676f);
