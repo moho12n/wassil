@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wassil/controllers/feedController.dart';
 import 'package:wassil/main.dart';
 import 'PostWidget.dart';
 import 'package:wassil/models/post.dart';
@@ -498,8 +499,9 @@ class _HomeScreenState extends State<HomeScreen>
                   ]),
               child: FloatingActionButton(
                 backgroundColor: ThemeColors.mainGreen,
-                onPressed: () {
-                  Navigator.of(context).pushNamed("/AddProposition");
+                onPressed: ()  async{
+                  await makeGetRequestFeed("national");
+                //Navigator.of(context).pushNamed("/AddProposition");
                 },
                 child: Icon(Icons.edit),
               ),
