@@ -9,6 +9,13 @@ import 'package:getflutter/getflutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
+  final VoidCallback toggle;
+
+  const HomeScreen({
+    this.toggle,
+    Key key,
+  }) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -23,11 +30,8 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // todo: take care of this later
-      floatingActionButton: FloatingActionButton(
+  // todo: take care of this later
+  /*FloatingActionButton(
         onPressed: () {},
         child: Container(
           width: 80,
@@ -40,278 +44,288 @@ class _HomeScreenState extends State<HomeScreen>
             height: 37,
           ),
         ),
-      ),
-      backgroundColor: ThemeColors.background,
-      body: SafeArea(
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: <Widget>[
-              CustomScrollView(
-                slivers: <Widget>[
-                  SliverAppBar(
-                    backgroundColor: ThemeColors.backgroundLight,
-                    pinned: true,
-                    snap: true,
-                    floating: true,
-                    expandedHeight: 198.0,
-                    // **Is it intended ?** flexibleSpace.title overlaps with tabs title.
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
+      ),*/
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Container(
+      decoration: BoxDecoration(color: ThemeColors.background, boxShadow: [
+        BoxShadow(
+            color: Colors.black54,
+            offset: Offset(0, 12),
+            blurRadius: 24,
+            spreadRadius: -12)
+      ]),
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: <Widget>[
+          CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                backgroundColor: ThemeColors.backgroundLight,
+                pinned: true,
+                snap: true,
+                floating: true,
+                expandedHeight: 198.0,
+                // **Is it intended ?** flexibleSpace.title overlaps with tabs title.
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
                           children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                SvgPicture.asset(
-                                  'assets/left_menu.svg',
-                                  height: 28.000003814697266,
-                                  width: 28,
-                                ),
-                                Spacer(),
-                                new Container(
-                                  height: 28.00,
-                                  width: 140.00,
-                                  padding: EdgeInsets.symmetric(horizontal: 14),
-                                  decoration: BoxDecoration(
-                                    color: Color(0xff161d24),
-                                    borderRadius: BorderRadius.circular(14.00),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "30 May 2020",
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context).textTheme.headline4,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ),
-                                Spacer(),
-                                Container(
-                                  height: 28.00,
-                                  width: 28.00,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xff161d24),
-                                    borderRadius: BorderRadius.circular(28.00),
-                                  ),
-                                ),
-                              ],
+                            GestureDetector(
+                              onTap: widget.toggle,
+                              child: SvgPicture.asset(
+                                'assets/left_menu.svg',
+                                height: 28,
+                                width: 28,
+                              ),
                             ),
-                            SizedBox(
-                              height: 14,
-                            ),
-                            Container(
-                              height: 48.00,
-                              width: 108.34,
+                            Spacer(),
+                            new Container(
+                              height: 28.00,
+                              width: 140.00,
+                              padding: EdgeInsets.symmetric(horizontal: 14),
                               decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: AssetImage(
-                                    "assets/Logo.png",
-                                  ),
+                                color: ThemeColors.background,
+                                borderRadius: BorderRadius.circular(14.00),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "30 May 2020",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.headline4,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
+                              ),
+                            ),
+                            Spacer(),
+                            Container(
+                              height: 28.00,
+                              width: 28.00,
+                              decoration: BoxDecoration(
+                                color: Color(0xff161d24),
+                                borderRadius: BorderRadius.circular(28.00),
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ),
-
-                    bottom: PreferredSize(
-                      preferredSize: const Size.fromHeight(90),
-                      child: Theme(
-                        data: Theme.of(context).copyWith(accentColor: Colors.white),
-                        child: Stack(children: <Widget>[
-                          AnimatedContainer(
-                            duration: Duration(milliseconds: 400),
-                            curve: Curves.easeInOutQuart,
-                            margin: EdgeInsets.only(
-                              top: (90 / 2) + 34,
-                              left: (controller.index == 0)
-                                  ? Offset(MediaQuery.of(context).size.width / 4,
-                                  206.0)
-                                  .dx -
-                                  36 / 2
-                                  : Offset(
-                                  (MediaQuery.of(context).size.width /
-                                      4) *
-                                      3,
-                                  206.0)
-                                  .dx -
-                                  56 / 2,
-                            ),
-                            height: 3,
-                            width: (controller.index == 0) ? 36 : 56,
-                            decoration: BoxDecoration(
-                                color: ThemeColors.mainGreen,
-                                borderRadius: BorderRadius.circular(100)),
-                          ),
-                          Row(
-                            children: <Widget>[
-                              /// Local Tabbar
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    controller.index = 0;
-                                  });
-                                },
-                                splashColor: ThemeColors.backgroundLighter,
-                                highlightColor: ThemeColors.backgroundLighter,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  color: Colors.transparent,
-                                  height: 90,
-                                  width: (MediaQuery.of(context).size.width) / 2,
-                                  child: Center(
-                                      child: (controller.index == 0)
-                                          ? Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Image(
-                                            height: 40,
-                                            image: AssetImage(
-                                              'assets/png/localActive.png',
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            'Local',
-                                            textAlign: TextAlign.center,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1,
-                                          ),
-                                        ],
-                                      )
-                                          : Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Image(
-                                            height: 40,
-                                            image: AssetImage(
-                                              'assets/png/local.png',
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            'Local',
-                                            textAlign: TextAlign.center,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline2,
-                                          )
-                                        ],
-                                      )),
-                                ),
-                              ),
-
-                              /// National Tabbar
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    controller.index = 1;
-                                  });
-                                },
-                                splashColor: ThemeColors.backgroundLighter,
-                                highlightColor: ThemeColors.backgroundLighter,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  color: Colors.transparent,
-                                  height: 90,
-                                  width: (MediaQuery.of(context).size.width) / 2,
-                                  child: Center(
-                                      child: (controller.index == 1)
-                                          ? Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Image(
-                                            height: 40,
-                                            image: AssetImage(
-                                              'assets/png/nationalActive.png',
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            'National',
-                                            textAlign: TextAlign.center,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1,
-                                          ),
-                                        ],
-                                      )
-                                          : Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Image(
-                                            height: 40,
-                                            image: AssetImage(
-                                              'assets/png/national.png',
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            'National',
-                                            textAlign: TextAlign.center,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline2,
-                                          )
-                                        ],
-                                      )),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ]),
-                      ),
-                    ),
-                  ),
-                  // SliverList(
-                  SliverFillRemaining(
-                    child: TabBarView(
-                      controller: controller,
-                      children: <Widget>[
-                        /// here is the local post page
-                        Wrap(
-                          direction: Axis.horizontal,
-                          children: _buildPosts(Post.localPosts),
+                        SizedBox(
+                          height: 14,
                         ),
-
-                        /// here is the national post page
-                        Wrap(
-                          direction: Axis.horizontal,
-                          children: _buildPosts(Post.nationalPosts),
+                        Container(
+                          height: 48.00,
+                          width: 108.34,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: AssetImage(
+                                "assets/Logo.png",
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
 
-              /// this is a gradient
-              Container(
-                height: 80,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [
-                          ThemeColors.background.withOpacity(0.0),
-                          ThemeColors.background,
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(90),
+                  child: Theme(
+                    data: Theme.of(context).copyWith(accentColor: Colors.white),
+                    child: Stack(children: <Widget>[
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 400),
+                        curve: Curves.easeInOutQuart,
+                        margin: EdgeInsets.only(
+                          top: (90 / 2) + 34,
+                          left: (controller.index == 0)
+                              ? Offset(MediaQuery.of(context).size.width / 4,
+                                          206.0)
+                                      .dx -
+                                  36 / 2
+                              : Offset(
+                                          (MediaQuery.of(context).size.width /
+                                                  4) *
+                                              3,
+                                          206.0)
+                                      .dx -
+                                  56 / 2,
+                        ),
+                        height: 3,
+                        width: (controller.index == 0) ? 36 : 56,
+                        decoration: BoxDecoration(
+                            color: ThemeColors.mainGreen,
+                            borderRadius: BorderRadius.circular(100)),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          /// Local Tabbar
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                controller.index = 0;
+                              });
+                            },
+                            splashColor: ThemeColors.backgroundLighter,
+                            highlightColor: ThemeColors.backgroundLighter,
+                            child: Container(
+                              alignment: Alignment.center,
+                              color: Colors.transparent,
+                              height: 90,
+                              width: (MediaQuery.of(context).size.width) / 2,
+                              child: Center(
+                                  child: (controller.index == 0)
+                                      ? Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Image(
+                                              height: 40,
+                                              image: AssetImage(
+                                                'assets/png/localActive.png',
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              'Local',
+                                              textAlign: TextAlign.center,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1,
+                                            ),
+                                          ],
+                                        )
+                                      : Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Image(
+                                              height: 40,
+                                              image: AssetImage(
+                                                'assets/png/local.png',
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              'Local',
+                                              textAlign: TextAlign.center,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline2,
+                                            )
+                                          ],
+                                        )),
+                            ),
+                          ),
+
+                          /// National Tabbar
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                controller.index = 1;
+                              });
+                            },
+                            splashColor: ThemeColors.backgroundLighter,
+                            highlightColor: ThemeColors.backgroundLighter,
+                            child: Container(
+                              alignment: Alignment.center,
+                              color: Colors.transparent,
+                              height: 90,
+                              width: (MediaQuery.of(context).size.width) / 2,
+                              child: Center(
+                                  child: (controller.index == 1)
+                                      ? Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Image(
+                                              height: 40,
+                                              image: AssetImage(
+                                                'assets/png/nationalActive.png',
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              'National',
+                                              textAlign: TextAlign.center,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1,
+                                            ),
+                                          ],
+                                        )
+                                      : Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Image(
+                                              height: 40,
+                                              image: AssetImage(
+                                                'assets/png/national.png',
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              'National',
+                                              textAlign: TextAlign.center,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline2,
+                                            )
+                                          ],
+                                        )),
+                            ),
+                          ),
                         ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)),
-              )
+                      ),
+                    ]),
+                  ),
+                ),
+              ),
+              // SliverList(
+              SliverFillRemaining(
+                child: TabBarView(
+                  controller: controller,
+                  children: <Widget>[
+                    /// here is the local post page
+                    Wrap(
+                      direction: Axis.horizontal,
+                      children: _buildPosts(Post.localPosts),
+                    ),
+
+                    /// here is the national post page
+                    Wrap(
+                      direction: Axis.horizontal,
+                      children: _buildPosts(Post.nationalPosts),
+                    ),
+                  ],
+                ),
+              ),
             ],
-          )),
-    );
+          ),
+
+          /// this is a gradient
+          Container(
+            height: 80,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+              ThemeColors.background.withOpacity(0.0),
+              ThemeColors.background,
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          )
+        ],
+      ),
+    ));
   }
 
   List<Widget> _buildPosts(List<Post> list) {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wassil/ui/homePage/homeScreen.dart';
+import 'package:wassil/ui/homePage/drawerScreen.dart';
 import 'package:wassil/ui/proposition/addPropositionScreen.dart';
 import 'package:wassil/ui/proposition/imagepick.dart';
+
 void main() => runApp(
       MyApp(),
     );
@@ -14,26 +16,49 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+          primarySwatch: Colors.blueGrey,
           textTheme: TextTheme(
             headline1: TextStyle(
-                color: ThemeColors.textColor1, fontFamily: 'Montserrat', fontSize: 14, fontWeight: FontWeight.w500),
+                color: ThemeColors.textColor1,
+                fontFamily: 'Montserrat',
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
             headline2: TextStyle(
-                color: ThemeColors.textColor2, fontFamily: 'Montserrat', fontSize: 14, fontWeight: FontWeight.w500),
+                color: ThemeColors.textColor2,
+                fontFamily: 'Montserrat',
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
             headline3: TextStyle(
-                color: ThemeColors.textColor3, fontFamily: 'Montserrat', fontSize: 14, fontWeight: FontWeight.w500),
+                color: ThemeColors.textColor3,
+                fontFamily: 'Montserrat',
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
             headline4: TextStyle(
-                color: ThemeColors.textColor2, fontFamily: 'Montserrat', fontSize: 12, fontWeight: FontWeight.w500),
+                color: ThemeColors.textColor2,
+                fontFamily: 'Montserrat',
+                fontSize: 12,
+                fontWeight: FontWeight.w500),
             headline5: TextStyle(
-                color: ThemeColors.textColor3, fontFamily: 'Montserrat', fontSize: 12, fontWeight: FontWeight.w500),
+                color: ThemeColors.textColor3,
+                fontFamily: 'Montserrat',
+                fontSize: 12,
+                fontWeight: FontWeight.w500),
             bodyText1: TextStyle(
-                color: ThemeColors.textColor2, fontFamily: 'Segoe UI', fontSize: 10, fontWeight: FontWeight.w400),
+                color: ThemeColors.textColor2,
+                fontFamily: 'Segoe UI',
+                fontSize: 10,
+                fontWeight: FontWeight.w400),
             bodyText2: TextStyle(
-                color: ThemeColors.textColor1, fontFamily: 'Segoe UI', fontSize: 10, fontWeight: FontWeight.w600),
+                color: ThemeColors.textColor1,
+                fontFamily: 'Segoe UI',
+                fontSize: 10,
+                fontWeight: FontWeight.w600),
             button: TextStyle(
-                color: ThemeColors.textColor1, fontFamily: 'Montserrat', fontSize: 16, fontWeight: FontWeight.w500),
-          )
-      ),
+                color: ThemeColors.textColor1,
+                fontFamily: 'Montserrat',
+                fontSize: 16,
+                fontWeight: FontWeight.w500),
+          )),
       home: HomePage(),
     );
   }
@@ -46,22 +71,88 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  TabController controller;
+  final double slideMax = 225.0;
+  bool _canBeDragged = false;
+  AnimationController animationController;
+
+  final double minDragStartEdge = 50;
+  final double maxDragStartEdge = 50;
 
   @override
   void initState() {
-    controller = TabController(length: 2, vsync: this, initialIndex: 0);
     super.initState();
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 250));
   }
+
+  void toggleDrawer() => animationController.isDismissed
+      ? animationController.forward()
+      : animationController.reverse();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: <Widget>[
-        DrawerScreen(),
-        HomeScreen(),
-      ],),
-    );}}
+      backgroundColor: ThemeColors.background,
+      body: AnimatedBuilder(
+        animation: animationController,
+        builder: (context, _) {
+          double slide = slideMax * animationController.value;
+          double scale = 1 - animationController.value * 0.3;
+          return GestureDetector(
+            onHorizontalDragStart: _onDragStart,
+            onHorizontalDragUpdate: _onDragUpdate,
+            onHorizontalDragEnd: _onDragEnd,
+            child: Stack(
+              children: <Widget>[
+                DrawerScreen(),
+                Transform(
+                    transform: Matrix4.identity()
+                      ..translate(slide)
+                      ..scale(scale),
+                    alignment: Alignment.centerLeft,
+                    child: HomeScreen(
+                      toggle: toggleDrawer,
+                    )),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void _onDragStart(DragStartDetails details) {
+    bool isDragOpenFormatLeft = animationController.isDismissed &&
+        details.globalPosition.dx < minDragStartEdge;
+    bool isDragCloseFormatRight = animationController.isCompleted &&
+        details.globalPosition.dx > maxDragStartEdge;
+
+    _canBeDragged = isDragOpenFormatLeft || isDragCloseFormatRight;
+  }
+
+  void _onDragUpdate(DragUpdateDetails details) {
+    if (_canBeDragged) {
+      double delta = details.primaryDelta / slideMax;
+      animationController.value += delta;
+    }
+  }
+
+  void _onDragEnd(DragEndDetails details) {
+    if (animationController.isDismissed || animationController.isCompleted) {
+      return;
+    }
+    if (details.velocity.pixelsPerSecond.dx.abs() >= 365.0) {
+      double visualVelocity = details.velocity.pixelsPerSecond.dx /
+          MediaQuery.of(context).size.width;
+
+      animationController.fling(velocity: visualVelocity);
+    } else if (animationController.value < 0.5) {
+      animationController.reverse();
+    } else {
+      animationController.forward();
+    }
+  }
+}
 
 // Colors
 class ThemeColors {
