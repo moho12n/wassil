@@ -135,10 +135,13 @@ class _HomePageState extends State<HomePage>
 
   final double minDragStartEdge = 50;
   final double maxDragStartEdge = 50;
+  
+  int govOrProb; // kiykon 0 gov tkon active kiykon 1 prob ykon active
 
   @override
   void initState() {
     super.initState();
+    govOrProb = 0;
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 250));
   }
@@ -162,15 +165,53 @@ class _HomePageState extends State<HomePage>
             onHorizontalDragEnd: _onDragEnd,
             child: Stack(
               children: <Widget>[
-                DrawerScreen(),
+                DrawerScreen(
+                  onPressedGov: () {
+                    setState(() {
+                      govOrProb = 0;
+                    });
+                  },
+                  onPressedProb: () {
+                    setState(() {
+                      govOrProb = 1:
+                    });
+                  },
+                  onPressedIdea: () {
+                    setState(() {
+                      govOrProb = 2:
+                    });
+                  },
+                ),
                 Transform(
                     transform: Matrix4.identity()
                       ..translate(slide)
                       ..scale(scale),
                     alignment: Alignment.centerLeft,
-                    child: HomeScreen(
-                      toggle: toggleDrawer,
-                    )),
+                    child: () {
+                      switch(variable_expression) { 
+                        case 0: {
+                          return HomeScreen(
+                            toggle: toggleDrawer,
+                          );
+                        }break; 
+                        case 1: {
+                          return FeedCitoyenProblems(
+                            toggle: toggleDrawer,
+                          );
+                        }break; 
+                        case 2: {
+                          return FeedCitoyenIdeas(
+                            toggle: toggleDrawer,
+                          );
+                        }break; 
+                        default: {
+                          return HomeScreen(
+                            toggle: toggleDrawer,
+                          );
+                        }break; 
+                      }
+                    }(),
+                ),
               ],
             ),
           );

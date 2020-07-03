@@ -10,8 +10,17 @@ import 'package:wassil/models/postProject.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DrawerScreen extends StatefulWidget {
-  /*final onpressed;
-  DrawerScreen(this.onpressed);*/
+  final Function() onPressedGov;
+  final Function() onPressedProb;
+  final Function() onPressedIdea;
+  
+  const DrawerScreen({
+    Key key,
+    this.onPressedGov,
+    this.onPressedProb,
+    this.onPressedIdea,
+  }) : super(key: key);
+  
   @override
   _DrawerScreenState createState() => _DrawerScreenState();
 }
@@ -179,9 +188,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   disabledColor: Colors.grey[350],
                   disabledTextColor: Colors.grey[500],
-                  onPressed: () {
-                    setState(() {});
-                  },
+                  onPressed: widget.onPressedGov,
                   child: Row(
                     children: <Widget>[
                       Container(
@@ -217,13 +224,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   disabledColor: Colors.grey[350],
                   disabledTextColor: Colors.grey[500],
-                  onPressed: () {
-                    setState(() {
-                      /*
-                      Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FeedCitoyenIdeas(toggle: toggleDrawer,)));*/
-                    });
-                  },
+                  onPressed: widget.onPressedProb,
                   child: Row(
                     children: <Widget>[
                       Container(
@@ -259,7 +260,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   disabledColor: Colors.grey[350],
                   disabledTextColor: Colors.grey[500],
-                  onPressed: () {},
+                  onPressed: widget.onPressedIdea,
                   child: Row(
                     children: <Widget>[
                       Container(
