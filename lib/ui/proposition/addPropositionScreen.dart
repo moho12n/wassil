@@ -8,7 +8,8 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:wassil/main.dart';
 import 'dart:async';
 import 'dart:io';
-
+import '../common/dialogue.dart';
+import 'package:http/http.dart';
 import 'package:flutter/services.dart' show rootBundle;
 //import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 
@@ -1053,17 +1054,20 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 23.0),
                 child: InkWell(
-                  onTap: () {
+                  onTap: () async {
                     print(ideeProbleme);
                     print("contenu : " + contenu);
                     print("title : " + title);
                     print("solution : " + solution);
-                    makePostProposition(
+                    Response response = await makePostProposition(
                         title,
                         contenu,
                         solution != null ? solution : "",
                         "national",
                         ideeProbleme ? "problem" : "idea");
+                    response.body == '{"message":"success"}'
+                        ? showSuccessDialog(context, "success")
+                        : showErrorDialog(context, response.body);
                   },
                   child: new Container(
                     height: 52.00,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wassil/main.dart';
+import 'package:wassil/ui/feedCitoyen/feedCitoyenIdeas.dart';
 import 'PostWidget.dart';
 import 'package:wassil/models/post.dart';
 import 'package:wassil/models/postNews.dart';
@@ -177,8 +178,48 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   disabledColor: Colors.grey[350],
                   disabledTextColor: Colors.grey[500],
                   onPressed: () {
+                    setState(() {});
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            color: Colors.green.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(100)),
+                        child: SvgPicture.asset(
+                          "assets/government.svg",
+                          height: 24,
+                          color: Colors.green.withOpacity(0.9),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
+                      Text(
+                        "Gouvernement",
+                        textAlign: TextAlign.left,
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
+                    ],
+                  )),
+              Divider(
+                height: 0,
+                color: ThemeColors.textColor2.withOpacity(0.3),
+                indent: 64,
+              ),
+              FlatButton(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  splashColor: ThemeColors.backgroundLighter,
+                  highlightColor: ThemeColors.backgroundLighter,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  disabledColor: Colors.grey[350],
+                  disabledTextColor: Colors.grey[500],
+                  onPressed: () {
                     setState(() {
-                      ThemeColors.changeColorMode();
+                      /*
+                      Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FeedCitoyenIdeas(toggle: toggleDrawer,)));*/
                     });
                   },
                   child: Row(
@@ -361,12 +402,13 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       SizedBox(
                         width: 16,
                       ),
-                      Text(
-                        "Contactez le support",
-                        textAlign: TextAlign.left,
-                        style: Theme.of(context).textTheme.headline4,
+                      Flexible(
+                        child: Text(
+                          "Contacter le support",
+                          textAlign: TextAlign.left,
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
                       ),
-                      Spacer(),
                       Icon(
                         Icons.keyboard_arrow_right,
                         size: 24,
@@ -430,7 +472,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             color: ThemeColors.backgroundLight,
                             borderRadius: BorderRadius.circular(100)),
                         child: Image(
-                            width: 20, image: AssetImage('assets/img/pdp.jpg')),
+                            width: 20, image: AssetImage("assets/Logo.png")),
                       ),
                       SizedBox(
                         width: 16,
