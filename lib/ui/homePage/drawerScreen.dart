@@ -10,6 +10,8 @@ import 'package:wassil/models/postProject.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DrawerScreen extends StatefulWidget {
+  /*final onpressed;
+  DrawerScreen(this.onpressed);*/
   @override
   _DrawerScreenState createState() => _DrawerScreenState();
 }

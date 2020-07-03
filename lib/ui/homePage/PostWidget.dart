@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wassil/ui/homePage/commentPopUp.dart';
 import '../../main.dart';
 import 'package:wassil/models/post.dart';
 import 'package:wassil/models/postNews.dart';
@@ -158,7 +159,9 @@ class PostWidget extends StatelessWidget {
                           children: <Widget>[
                             Expanded(
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  avisPopup(context);
+                                },
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -440,9 +443,7 @@ class PollWidget extends StatelessWidget {
         ),
         child: () {
           // if (news.getImages.length == 0) {
-          return Container(
-            
-          );
+          return Container();
         }(),
       ),
     );

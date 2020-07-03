@@ -168,7 +168,7 @@ class _HomePageState extends State<HomePage>
                       ..translate(slide)
                       ..scale(scale),
                     alignment: Alignment.centerLeft,
-                    child: FeedCitoyenProblems(
+                    child: HomeScreen(
                       toggle: toggleDrawer,
                     )),
               ],
