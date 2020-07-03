@@ -21,38 +21,48 @@ fetchPost() async {
   listPostRegional.forEach((element) {
     element.post_type == "survey"
         ? Post.localPosts.add(Poll(
+            element.id,
             element.title,
             element.ministryName,
             element.title,
           ))
         : element.post_type == "project"
-            ? Post.localPosts.add(
-                Project(element.title, element.townName, element.description, [
+            ? Post.localPosts.add(Project(element.id, element.title,
+                element.townName, element.description, [
                 "assets/img/projet1.jpg",
                 "assets/img/projet2.jpg",
                 "assets/img/projet3.jpg",
                 "assets/img/projet4.jpg",
               ]))
-            : Post.localPosts.add(News(element.title, element.ministryName,
-                element.description, ["assets/img/news1.jpg"]));
+            : Post.localPosts.add(News(
+                element.id,
+                element.title,
+                element.ministryName,
+                element.description,
+                ["assets/img/news1.jpg"]));
   });
   listPostNational.forEach((element) {
     element.post_type == "survey"
         ? Post.nationalPosts.add(Poll(
+            element.id,
             element.title,
             element.ministryName,
             element.title,
           ))
         : element.post_type == "project"
-            ? Post.nationalPosts.add(
-                Project(element.title, element.townName, element.description, [
+            ? Post.nationalPosts.add(Project(element.id, element.title,
+                element.townName, element.description, [
                 "assets/img/projet1.jpg",
                 "assets/img/projet2.jpg",
                 "assets/img/projet3.jpg",
                 "assets/img/projet4.jpg",
               ]))
-            : Post.nationalPosts.add(News(element.title, element.ministryName,
-                element.description, ["assets/img/news1.jpg"]));
+            : Post.nationalPosts.add(News(
+                element.id,
+                element.title,
+                element.ministryName,
+                element.description,
+                ["assets/img/news1.jpg"]));
   });
 }
 

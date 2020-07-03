@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wassil/controllers/commentController.dart';
 import 'package:wassil/main.dart';
 
+import 'package:http/http.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wassil/ui/common/dialogue.dart';
 
 String comment = "";
 
@@ -10,7 +13,7 @@ class Dimens {
   static double Height;
 }
 
-void avisPopup(BuildContext context) {
+void avisPopup(BuildContext context, String projectId, String comment) {
   Dimens.Height = MediaQuery.of(context).size.height;
   Dimens.Width = MediaQuery.of(context).size.width;
 
@@ -171,7 +174,22 @@ void avisPopup(BuildContext context) {
                                                   ),
                                                   Expanded(
                                                     child: InkWell(
-                                                        onTap: () {},
+                                                        onTap: () async {
+                                                          Response response =
+                                                              await makePostComment(
+                                                                  comment,
+                                                                  projectId);
+                                                          Navigator.pop(
+                                                              context);
+                                                          response.body ==
+                                                                  '{"message":"Success! Comment saved."}'
+                                                              ? showSuccessDialog(
+                                                                  context,
+                                                                  "success")
+                                                              : showErrorDialog(
+                                                                  context,
+                                                                  "Veuillez écrire un commentaire");
+                                                        },
                                                         child: new Container(
                                                           height: 36.00,
                                                           width:

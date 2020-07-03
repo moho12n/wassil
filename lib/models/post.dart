@@ -10,7 +10,7 @@ class Post {
   String institution;
   String title;
   String description;
-  Post(this.title, this.institution, this.description);
+  Post(this.id,this.title, this.institution, this.description);
   int get getId => id;
 
   String get getInstitution => institution;
@@ -63,37 +63,38 @@ class Post {
     listPostRegional.forEach((element) {
       element.post_type == "survey"
           ? localPosts.add(Poll(
+            element.id,
               element.title,
               element.ministryName,
               element.title,
             ))
           : element.post_type == "project"
-              ? localPosts.add(Project(
+              ? localPosts.add(Project(element.id,
                   element.title, element.townName, element.description, [
                   "assets/img/projet1.jpg",
                   "assets/img/projet2.jpg",
                   "assets/img/projet3.jpg",
                   "assets/img/projet4.jpg",
                 ]))
-              : localPosts.add(News(element.title, element.ministryName,
+              : localPosts.add(News(element.id,element.title, element.ministryName,
                   element.description, ["assets/img/news1.jpg"]));
     });
     listPostNational.forEach((element) {
       element.post_type == "survey"
-          ? nationalPosts.add(Poll(
+          ? nationalPosts.add(Poll(element.id,
               element.title,
               element.ministryName,
               element.title,
             ))
           : element.post_type == "project"
-              ? nationalPosts.add(Project(
+              ? nationalPosts.add(Project(element.id,
                   element.title, element.townName, element.description, [
                   "assets/img/projet1.jpg",
                   "assets/img/projet2.jpg",
                   "assets/img/projet3.jpg",
                   "assets/img/projet4.jpg",
                 ]))
-              : nationalPosts.add(News(element.title, element.ministryName,
+              : nationalPosts.add(News(element.id,element.title, element.ministryName,
                   element.description, ["assets/img/news1.jpg"]));
     });
   }

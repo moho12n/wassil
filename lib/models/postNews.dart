@@ -5,5 +5,5 @@ class News extends Post {
 
   List<String> get getImages => images;
 
-  News(String title, String institution, String description, this.images) : super(title, institution, description);
+  News(int id,String title, String institution, String description, this.images) : super(id,title, institution, description);
 }

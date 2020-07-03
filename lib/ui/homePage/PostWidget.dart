@@ -12,15 +12,16 @@ class PostWidget extends StatelessWidget {
   final String type;
   final String description;
   final Widget child;
-
-  const PostWidget({
-    Key key,
-    this.institution,
-    this.title,
-    this.type,
-    this.description,
-    this.child,
-  }) : super(key: key);
+  final String projectId;
+  const PostWidget(
+      {Key key,
+      this.institution,
+      this.title,
+      this.type,
+      this.description,
+      this.child,
+      this.projectId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +161,7 @@ class PostWidget extends StatelessWidget {
                             Expanded(
                               child: InkWell(
                                 onTap: () {
-                                  avisPopup(context);
+                                  avisPopup(context, this.projectId, comment);
                                 },
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -259,6 +260,7 @@ class NewsWidget extends StatelessWidget {
       title: this.news.getTitle,
       description: this.news.getDescription,
       type: "News",
+      projectId: this.news.id.toString(),
       child: Container(
         height: 140,
         width: MediaQuery.of(context).size.width - 88,
@@ -434,6 +436,7 @@ class PollWidget extends StatelessWidget {
       title: this.poll.getTitle,
       description: this.poll.getDescription,
       type: "Sondage",
+      projectId: this.poll.id.toString(),
       child: Container(
         height: 140,
         decoration: BoxDecoration(
@@ -465,6 +468,7 @@ class ProjectWidget extends StatelessWidget {
       title: this.project.getTitle,
       description: this.project.getDescription,
       type: "Projet",
+      projectId: this.project.id.toString(),
       child: Container(
         height: 140,
         width: MediaQuery.of(context).size.width - 88,

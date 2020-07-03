@@ -5,5 +5,7 @@ class Project extends Post {
 
   List<String> get getImages => images;
 
-  Project(String title, String institution, String description, this.images) : super(title, institution, description);
+  Project(
+      int id, String title, String institution, String description, this.images)
+      : super(id, title, institution, description);
 }
