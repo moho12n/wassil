@@ -573,7 +573,7 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                                             ),
                                             onChanged: (input) {
                                               setState(() {
-                                                title = input;
+                                                contenu = input;
                                               });
                                             },
                                           ),
@@ -1055,6 +1055,7 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                 child: InkWell(
                   onTap: () {
                     print(ideeProbleme);
+                    print(contenu + "*****"  + solution);
                     makePostProposition(contenu, solution, "national",
                         ideeProbleme ? "problem" : "idea");
                   },
