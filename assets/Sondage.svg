@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="550" height="278" viewBox="0 0 550 278">
+  <g id="Sondage" transform="translate(-152 -476)">
+    <g id="Rectangle_7" data-name="Rectangle 7" transform="translate(152 476)" fill="none" stroke="#44484f" stroke-width="2">
+      <rect width="550" height="278" rx="12" stroke="none"/>
+      <rect x="1" y="1" width="548" height="276" rx="11" fill="none"/>
+    </g>
+    <g id="Option_1" data-name="Option 1" transform="translate(15 -544)">
+      <g id="Rectangle_13" data-name="Rectangle 13" transform="translate(161 1044)" fill="none" stroke="#44484f" stroke-width="2">
+        <rect width="28" height="28" rx="8" stroke="none"/>
+        <rect x="1" y="1" width="26" height="26" rx="7" fill="none"/>
+      </g>
+      <rect id="Rectangle_14" data-name="Rectangle 14" width="502" height="16" rx="8" transform="translate(161 1080)" fill="#0e1317"/>
+      <text id="Bonne_idée." data-name="Bonne idée." transform="translate(201 1067)" fill="#c4ced8" font-size="22" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Bonne idée.</tspan></text>
+      <text id="_68_" data-name="68%" transform="translate(663 1090)" fill="#fff" font-size="22" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="-42.979" y="0">68%</tspan></text>
+      <rect id="Rectangle_15" data-name="Rectangle 15" width="341.36" height="16" rx="8" transform="translate(161 1080)" fill="#99e870"/>
+    </g>
+    <g id="Option_1-2" data-name="Option 1" transform="translate(15 -452)">
+      <g id="Rectangle_13-2" data-name="Rectangle 13" transform="translate(161 1044)" fill="none" stroke="#44484f" stroke-width="2">
+        <rect width="28" height="28" rx="8" stroke="none"/>
+        <rect x="1" y="1" width="26" height="26" rx="7" fill="none"/>
+      </g>
+      <rect id="Rectangle_14-2" data-name="Rectangle 14" width="502" height="16" rx="8" transform="translate(161 1080)" fill="#0e1317"/>
+      <text id="Mauvaise_idée." data-name="Mauvaise idée." transform="translate(201 1067)" fill="#c4ced8" font-size="22" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Mauvaise idée.</tspan></text>
+      <rect id="Rectangle_16" data-name="Rectangle 16" width="45.18" height="16" rx="8" transform="translate(161 1080)" fill="#ff5f58"/>
+      <text id="_9_" data-name="9%" transform="translate(663 1090)" fill="#fff" font-size="22" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="-30.766" y="0">9%</tspan></text>
+    </g>
+    <g id="Option_1-3" data-name="Option 1" transform="translate(15 -360)">
+      <g id="Rectangle_13-3" data-name="Rectangle 13" transform="translate(161 1044)" fill="none" stroke="#44484f" stroke-width="2">
+        <rect width="28" height="28" rx="8" stroke="none"/>
+        <rect x="1" y="1" width="26" height="26" rx="7" fill="none"/>
+      </g>
+      <rect id="Rectangle_14-3" data-name="Rectangle 14" width="502" height="16" rx="8" transform="translate(161 1080)" fill="#0e1317"/>
+      <text id="Sans_avis." data-name="Sans avis." transform="translate(201 1067)" fill="#c4ced8" font-size="22" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Sans avis.</tspan></text>
+      <rect id="Rectangle_17" data-name="Rectangle 17" width="115.46" height="16" rx="8" transform="translate(161 1080)" fill="#ff984c"/>
+      <text id="_23_" data-name="23%" transform="translate(663 1090)" fill="#fff" font-size="22" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="-42.915" y="0">23%</tspan></text>
+    </g>
+  </g>
+</svg>

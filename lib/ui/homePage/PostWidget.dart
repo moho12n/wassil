@@ -5,6 +5,7 @@ import 'package:wassil/models/post.dart';
 import 'package:wassil/models/postNews.dart';
 import 'package:wassil/models/postPoll.dart';
 import 'package:wassil/models/postProject.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PostWidget extends StatelessWidget {
   final String institution;
@@ -438,15 +439,20 @@ class PollWidget extends StatelessWidget {
       type: "Sondage",
       projectId: this.poll.id.toString(),
       child: Container(
-        height: 140,
+        height: 148,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: ThemeColors.backgroundDark,
-          border: Border.all(color: ThemeColors.backgroundLight, width: 1),
+          //border: Border.all(color: ThemeColors.backgroundLight, width: 1),
         ),
         child: () {
           // if (news.getImages.length == 0) {
-          return Container();
+          return Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/Sondage.png"), fit: BoxFit.fill),
+            ),
+          );
         }(),
       ),
     );
