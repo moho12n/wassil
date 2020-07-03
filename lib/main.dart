@@ -12,6 +12,7 @@ import 'package:wassil/ui/proposition/addPropositionScreen.dart';
 import 'package:wassil/ui/proposition/imagepick.dart';
 import 'models/post.dart';
 
+int variable_expression = 0;
 List<PostModel> listPostRegional;
 List<PostModel> listPostNational;
 fetchPost() async {
@@ -135,7 +136,7 @@ class _HomePageState extends State<HomePage>
 
   final double minDragStartEdge = 50;
   final double maxDragStartEdge = 50;
-  
+
   int govOrProb; // kiykon 0 gov tkon active kiykon 1 prob ykon active
 
   @override
@@ -173,44 +174,52 @@ class _HomePageState extends State<HomePage>
                   },
                   onPressedProb: () {
                     setState(() {
-                      govOrProb = 1:
+                      govOrProb = 1;
                     });
                   },
                   onPressedIdea: () {
                     setState(() {
-                      govOrProb = 2:
+                      govOrProb = 2;
                     });
                   },
                 ),
                 Transform(
-                    transform: Matrix4.identity()
-                      ..translate(slide)
-                      ..scale(scale),
-                    alignment: Alignment.centerLeft,
-                    child: () {
-                      switch(variable_expression) { 
-                        case 0: {
+                  transform: Matrix4.identity()
+                    ..translate(slide)
+                    ..scale(scale),
+                  alignment: Alignment.centerLeft,
+                  child: () {
+                    switch (govOrProb) {
+                      case 0:
+                        {
                           return HomeScreen(
                             toggle: toggleDrawer,
                           );
-                        }break; 
-                        case 1: {
+                        }
+                        break;
+                      case 1:
+                        {
                           return FeedCitoyenProblems(
                             toggle: toggleDrawer,
                           );
-                        }break; 
-                        case 2: {
+                        }
+                        break;
+                      case 2:
+                        {
                           return FeedCitoyenIdeas(
                             toggle: toggleDrawer,
                           );
-                        }break; 
-                        default: {
+                        }
+                        break;
+                      default:
+                        {
                           return HomeScreen(
                             toggle: toggleDrawer,
                           );
-                        }break; 
-                      }
-                    }(),
+                        }
+                        break;
+                    }
+                  }(),
                 ),
               ],
             ),

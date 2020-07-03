@@ -469,7 +469,7 @@ class _HomeScreenState extends State<FeedCitoyenIdeas>
                                               title: snapshot.data[index].title,
                                               description:
                                                   snapshot.data[index].content,
-                                              type: "Problem",
+                                              type: "Idea",
                                             ),
                                           )),
                                         );
@@ -492,7 +492,7 @@ class _HomeScreenState extends State<FeedCitoyenIdeas>
                                               title: snapshot.data[index].title,
                                               description:
                                                   snapshot.data[index].content,
-                                              type: "Problem",
+                                              type: "Idea",
                                             ),
                                           )),
                                         );

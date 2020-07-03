@@ -42,20 +42,12 @@ class ProblemWidget extends StatelessWidget {
                   }(),
                 ),
                 child: () {
-                  if (this.type == "Problem")
-                    return Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: AssetImage('assets/img/pdp.jpg'))),
-                    );
-                  else if (this.type == "Idea")
-                    return Icon(
-                      Icons.poll,
-                      color: Colors.white,
-                    );
-                  else
-                    return Icons.error_outline;
+                  return Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: AssetImage('assets/img/pdp.jpg'))),
+                  );
                 }(),
               ),
               SizedBox(
