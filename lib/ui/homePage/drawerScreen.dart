@@ -13,14 +13,15 @@ class DrawerScreen extends StatefulWidget {
   final Function() onPressedGov;
   final Function() onPressedProb;
   final Function() onPressedIdea;
-  
+  final Function() onPressedScore;
   const DrawerScreen({
     Key key,
     this.onPressedGov,
     this.onPressedProb,
     this.onPressedIdea,
+    this.onPressedScore,
   }) : super(key: key);
-  
+
   @override
   _DrawerScreenState createState() => _DrawerScreenState();
 }
@@ -70,7 +71,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Nom du citoyen",
+                            "DOUZANE Mohamed",
                             textAlign: TextAlign.left,
                             style: Theme.of(context).textTheme.headline1,
                           ),
@@ -136,7 +137,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   disabledColor: Colors.grey[350],
                   disabledTextColor: Colors.grey[500],
-                  onPressed: () {},
+                  onPressed: widget.onPressedScore,
                   child: Row(
                     children: <Widget>[
                       Container(

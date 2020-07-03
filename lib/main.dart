@@ -8,6 +8,7 @@ import 'package:wassil/ui/feedCitoyen/feedCitoyenIdeas.dart';
 import 'package:wassil/ui/feedCitoyen/feedCitoyenProblems.dart';
 import 'package:wassil/ui/homePage/homeScreen.dart';
 import 'package:wassil/ui/homePage/drawerScreen.dart';
+import 'package:wassil/ui/monScore.dart/scoreScreen.dart';
 import 'package:wassil/ui/proposition/addPropositionScreen.dart';
 import 'package:wassil/ui/proposition/imagepick.dart';
 import 'models/post.dart';
@@ -108,6 +109,7 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Montserrat',
               fontSize: 12,
               fontWeight: FontWeight.w500),
+              
           bodyText1: TextStyle(
               color: ThemeColors.textColor2,
               fontFamily: 'Segoe UI',
@@ -192,6 +194,11 @@ class _HomePageState extends State<HomePage>
                       govOrProb = 2;
                     });
                   },
+                  onPressedScore: () {
+                    setState(() {
+                      govOrProb = 3;
+                    });
+                  },
                 ),
                 Transform(
                   transform: Matrix4.identity()
@@ -221,6 +228,14 @@ class _HomePageState extends State<HomePage>
                           );
                         }
                         break;
+                      case 3:
+                        {
+                          return ScoreScreen(
+                            toggle: toggleDrawer,
+                          );
+                        }
+                        break;
+                          
                       default:
                         {
                           return HomeScreen(
