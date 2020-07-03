@@ -25,11 +25,11 @@ void showSuccessDialog(BuildContext context, String success) {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Container(
-                    color: Colors.white,
+                    color: ThemeColors.backgroundLight,
                     width: Dimens.Width * .9,
                     child: Material(
                       textStyle: TextStyle(color: Colors.black),
-                      color: Colors.white,
+                      color: ThemeColors.backgroundLight,
                       child: Padding(
                         padding: EdgeInsets.all(5.0),
                         child: Column(
@@ -58,11 +58,9 @@ void showSuccessDialog(BuildContext context, String success) {
                                         text: TextSpan(children: [
                                           TextSpan(
                                               text: "Bravo !\n",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: 'Gotham',
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold)),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1),
                                           WidgetSpan(
                                               child: Container(
                                             height: 10.0,
@@ -70,11 +68,9 @@ void showSuccessDialog(BuildContext context, String success) {
                                           TextSpan(
                                               text: success.toUpperCase() +
                                                   "\n\n",
-                                              style: TextStyle(
-                                                  fontFamily: "Gotham",
-                                                  color: ThemeColors.mainGreen,
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 12)),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1),
                                         ])),
                                   ],
                                 ),
@@ -116,7 +112,7 @@ void showErrorDialog(BuildContext context, String error) {
                     width: Dimens.Width * .9,
                     child: Material(
                       textStyle: TextStyle(color: Colors.black),
-                      color: Colors.white.withOpacity(0.9),
+                      color: ThemeColors.backgroundLight,
                       child: Padding(
                         padding: EdgeInsets.all(5.0),
                         child: Column(
@@ -145,22 +141,18 @@ void showErrorDialog(BuildContext context, String error) {
                                         text: TextSpan(children: [
                                           TextSpan(
                                               text: "Oops!\n",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: 'Gotham',
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold)),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1),
                                           WidgetSpan(
                                               child: Container(
                                             height: 10.0,
                                           )),
                                           TextSpan(
                                               text: error + "\n\n",
-                                              style: TextStyle(
-                                                  fontFamily: "Gotham",
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 12)),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline2),
                                         ])),
                                   ],
                                 ),

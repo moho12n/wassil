@@ -41,7 +41,7 @@ void avisPopup(BuildContext context, String projectId, String comment) {
                         height: Dimens.Height * .45,
                         child: Material(
                           textStyle: TextStyle(color: Colors.black),
-                          color: Colors.white,
+                          color: ThemeColors.backgroundLight,
                           child: Padding(
                             padding: EdgeInsets.all(5.0),
                             child: Column(
@@ -78,25 +78,68 @@ void avisPopup(BuildContext context, String projectId, String comment) {
                                                   TextSpan(
                                                       text:
                                                           "Laissez votre commentaire",
-                                                      style: TextStyle(
-                                                        fontFamily:
-                                                            "Montserrat",
-                                                        fontSize: 18,
-                                                        color:
-                                                            Color(0xff000000),
-                                                      )),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline1),
                                                 ])),
                                           ),
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(
                                               top: Dimens.Height * .05),
+                                          child: Center(
+                                            child: Container(
+                                              height: 140.00,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  24,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: ThemeColors
+                                                        .backgroundLighter),
+                                                color: Colors.transparent,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.00),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 15.0),
+                                                child: TextField(
+                                                  maxLines: 10,
+                                                  keyboardType:
+                                                      TextInputType.text,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline4,
+                                                  cursorColor:
+                                                      ThemeColors.mainGreen,
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    hintText:
+                                                        "Décrivez la proposition",
+                                                    hintStyle: Theme.of(context)
+                                                        .textTheme
+                                                        .headline5,
+                                                  ),
+                                                  onChanged: (input) {
+                                                    comment = input;
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        /*Padding(
+                                          padding: EdgeInsets.only(
+                                              top: Dimens.Height * .05),
                                           child: new Container(
                                             height: Dimens.Height * .20,
                                             width: Dimens.Width * .8,
                                             decoration: BoxDecoration(
-                                              color: Color(0xff707070)
-                                                  .withOpacity(0.05),
+                                              color:
+                                                  ThemeColors.backgroundLighter,
                                               borderRadius:
                                                   BorderRadius.circular(5.00),
                                             ),
@@ -119,12 +162,9 @@ void avisPopup(BuildContext context, String projectId, String comment) {
                                                       : null,
                                                   border: InputBorder.none,
                                                   hintText: "Votre commentaire",
-                                                  hintStyle: TextStyle(
-                                                    fontFamily: "Montserrat",
-                                                    fontSize: 17,
-                                                    color: Color(0xff707070)
-                                                        .withOpacity(0.50),
-                                                  ),
+                                                  hintStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2,
                                                   //  hintStyle: Theme.of(context).textTheme.display2,
                                                 ),
                                                 onChanged: (input) {
@@ -135,11 +175,14 @@ void avisPopup(BuildContext context, String projectId, String comment) {
                                             ),
                                           ),
                                         ),
+                                        */
                                         Align(
                                           alignment: Alignment.bottomCenter,
                                           child: Padding(
                                             padding: EdgeInsets.only(
-                                                top: Dimens.Height * .01),
+                                                top: Dimens.Height * .01,
+                                                left: 80,
+                                                right: 80),
                                             child: Container(
                                               height: Dimens.Height * .1,
                                               width: MediaQuery.of(context)
@@ -147,31 +190,6 @@ void avisPopup(BuildContext context, String projectId, String comment) {
                                                   .width,
                                               child: Row(
                                                 children: <Widget>[
-                                                  SizedBox(
-                                                    width: 21,
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () async {},
-                                                    child: Container(
-                                                      height: 37.00,
-                                                      width: 56.00,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(5.0),
-                                                        child: SvgPicture.asset(
-                                                          "assets/image.svg",
-                                                          alignment:
-                                                              Alignment.center,
-                                                          color:
-                                                              Color(0xff707070),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 21,
-                                                  ),
                                                   Expanded(
                                                     child: InkWell(
                                                         onTap: () async {
@@ -201,7 +219,7 @@ void avisPopup(BuildContext context, String projectId, String comment) {
                                                             boxShadow: [
                                                               BoxShadow(
                                                                 offset: Offset(
-                                                                    0.00, 5.00),
+                                                                    0.00, 0.00),
                                                                 color: ThemeColors
                                                                     .mainGreen
                                                                     .withOpacity(
@@ -228,9 +246,6 @@ void avisPopup(BuildContext context, String projectId, String comment) {
                                                           ),
                                                         )),
                                                   ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  )
                                                 ],
                                               ),
                                             ),
