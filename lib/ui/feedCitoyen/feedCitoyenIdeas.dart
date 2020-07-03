@@ -466,7 +466,8 @@ class _HomeScreenState extends State<FeedCitoyenIdeas>
                                           padding: const EdgeInsets.all(8.0),
                                           child: (Container(
                                             child: ProblemStatelessWidget(
-                                              title: "Titre",
+                                              title: 
+                                                  snapshot.data[index].title,
                                               description:
                                                   snapshot.data[index].content,
                                               solution:
@@ -491,7 +492,7 @@ class _HomeScreenState extends State<FeedCitoyenIdeas>
                                           padding: const EdgeInsets.all(8.0),
                                           child: (Container(
                                             child: ProblemStatelessWidget(
-                                              title: "Titre",
+                                              title: snapshot.data[index].title,
                                               description:
                                                   snapshot.data[index].content,
                                               solution:

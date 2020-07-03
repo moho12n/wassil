@@ -21,9 +21,9 @@ class AddPropositionScreen extends StatefulWidget {
 }
 
 class _AddPropositionScreenState extends State<AddPropositionScreen> {
-  String title;
-  String contenu;
-  String solution;
+  String title = "";
+  String contenu = "";
+  String solution = "";
 
   List<Asset> images = List<Asset>();
   String _error = 'No Error Dectected';
@@ -309,7 +309,7 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                                             ),
                                             onChanged: (input) {
                                               setState(() {
-                                                title = input;
+                                                contenu = input;
                                               });
                                             },
                                           ),
@@ -1055,8 +1055,14 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                 child: InkWell(
                   onTap: () {
                     print(ideeProbleme);
-                    print(contenu + "*****"  + solution);
-                    makePostProposition(contenu, solution, "national",
+                    print("contenu : " + contenu);
+                    print("title : " + title);
+                    print("solution : " + solution);
+                    makePostProposition(
+                        title,
+                        contenu,
+                        solution != null ? solution : "",
+                        "national",
                         ideeProbleme ? "problem" : "idea");
                   },
                   child: new Container(
