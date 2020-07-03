@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wassil/controllers/propositionController.dart';
 import 'package:wassil/main.dart';
 import 'customSwitch.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,6 +23,8 @@ class AddPropositionScreen extends StatefulWidget {
 class _AddPropositionScreenState extends State<AddPropositionScreen> {
   String title;
   String contenu;
+  String solution;
+
   List<Asset> images = List<Asset>();
   String _error = 'No Error Dectected';
   bool ideeProbleme = false, localNational = false;
@@ -634,7 +637,7 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                                             ),
                                             onChanged: (input) {
                                               setState(() {
-                                                title = input;
+                                                solution = input;
                                               });
                                             },
                                           ),
@@ -729,8 +732,8 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                                               return Container(
                                                 height: 180.00,
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width -
+                                                        .size
+                                                        .width -
                                                     24,
                                                 decoration: BoxDecoration(
                                                   color: ThemeColors
@@ -741,35 +744,48 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                                                         .backgroundLight,
                                                   ),
                                                   borderRadius:
-                                                  BorderRadius.circular(
-                                                      12.00),
+                                                      BorderRadius.circular(
+                                                          12.00),
                                                 ),
                                                 child: ClipRRect(
-                                                  borderRadius: BorderRadius.circular(6.5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.5),
                                                   child: Row(
                                                     children: <Widget>[
                                                       Container(
                                                         height: 180.00,
-                                                        width: (MediaQuery.of(context).size.width - 27) / 2,
+                                                        width: (MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width -
+                                                                27) /
+                                                            2,
                                                         child: FittedBox(
-
                                                           /// 1 ere image
-                                                          child: Image.asset(pathsList[0]),
+                                                          child: Image.asset(
+                                                              pathsList[0]),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
                                                       Container(
                                                         height: 180.00,
                                                         width: 1,
-                                                        color: ThemeColors.backgroundLight,
+                                                        color: ThemeColors
+                                                            .backgroundLight,
                                                       ),
                                                       Container(
                                                         height: 180.00,
-                                                        width: (MediaQuery.of(context).size.width - 27) / 2,
+                                                        width: (MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width -
+                                                                27) /
+                                                            2,
                                                         child: FittedBox(
-
                                                           /// 2 eme image
-                                                          child: Image.asset(pathsList[1]),
+                                                          child: Image.asset(
+                                                              pathsList[1]),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       )
@@ -781,8 +797,8 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                                               return Container(
                                                 height: 180.00,
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width -
+                                                        .size
+                                                        .width -
                                                     24,
                                                 decoration: BoxDecoration(
                                                   color: ThemeColors
@@ -793,46 +809,78 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                                                         .backgroundLight,
                                                   ),
                                                   borderRadius:
-                                                  BorderRadius.circular(
-                                                      12.00),
+                                                      BorderRadius.circular(
+                                                          12.00),
                                                 ),
                                                 child: ClipRRect(
-                                                  borderRadius: BorderRadius.circular(6.5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.5),
                                                   child: Row(
                                                     children: <Widget>[
                                                       Container(
                                                         height: 180.00,
-                                                        width: ((MediaQuery.of(context).size.width - 27) / 3) * 2,
+                                                        width: ((MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3) *
+                                                            2,
                                                         child: FittedBox(
-                                                          child: Image.asset(pathsList[0]),
+                                                          child: Image.asset(
+                                                              pathsList[0]),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
                                                       Container(
                                                         height: 180.00,
                                                         width: 1,
-                                                        color: ThemeColors.backgroundLight,
+                                                        color: ThemeColors
+                                                            .backgroundLight,
                                                       ),
                                                       Column(
                                                         children: <Widget>[
                                                           Container(
                                                             height: 88.50,
-                                                            width: (MediaQuery.of(context).size.width - 27) / 3,
+                                                            width: (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3,
                                                             child: FittedBox(
-                                                              child: Image.asset(pathsList[1]),
+                                                              child:
+                                                                  Image.asset(
+                                                                      pathsList[
+                                                                          1]),
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ),
                                                           Container(
                                                             height: 1,
-                                                            width: (MediaQuery.of(context).size.width - 27) / 3,
-                                                            color: ThemeColors.backgroundLight,
+                                                            width: (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3,
+                                                            color: ThemeColors
+                                                                .backgroundLight,
                                                           ),
                                                           Container(
                                                             height: 88.50,
-                                                            width: (MediaQuery.of(context).size.width - 27) / 3,
+                                                            width: (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3,
                                                             child: FittedBox(
-                                                              child: Image.asset(pathsList[2]),
+                                                              child:
+                                                                  Image.asset(
+                                                                      pathsList[
+                                                                          2]),
                                                               fit: BoxFit.cover,
                                                             ),
                                                           )
@@ -862,55 +910,101 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                                                           12.00),
                                                 ),
                                                 child: ClipRRect(
-                                                  borderRadius: BorderRadius.circular(6.5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.5),
                                                   child: Row(
                                                     children: <Widget>[
                                                       Container(
                                                         height: 180.00,
-                                                        width: ((MediaQuery.of(context).size.width - 27) / 3) * 2,
+                                                        width: ((MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3) *
+                                                            2,
                                                         child: FittedBox(
-                                                          child: Image.asset(pathsList[0]),
+                                                          child: Image.asset(
+                                                              pathsList[0]),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
                                                       Container(
                                                         height: 180.00,
                                                         width: 1,
-                                                        color: ThemeColors.backgroundLight,
+                                                        color: ThemeColors
+                                                            .backgroundLight,
                                                       ),
                                                       Column(
                                                         children: <Widget>[
                                                           Container(
                                                             height: 176.00 / 3,
-                                                            width: (MediaQuery.of(context).size.width - 27) / 3,
+                                                            width: (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3,
                                                             child: FittedBox(
-                                                              child: Image.asset(pathsList[1]),
+                                                              child:
+                                                                  Image.asset(
+                                                                      pathsList[
+                                                                          1]),
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ),
                                                           Container(
                                                             height: 1,
-                                                            width: (MediaQuery.of(context).size.width - 27) / 3,
-                                                            color: ThemeColors.backgroundLight,
+                                                            width: (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3,
+                                                            color: ThemeColors
+                                                                .backgroundLight,
                                                           ),
                                                           Container(
                                                             height: 176.00 / 3,
-                                                            width: (MediaQuery.of(context).size.width - 27) / 3,
+                                                            width: (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3,
                                                             child: FittedBox(
-                                                              child: Image.asset(pathsList[2]),
+                                                              child:
+                                                                  Image.asset(
+                                                                      pathsList[
+                                                                          2]),
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ),
                                                           Container(
                                                             height: 1,
-                                                            width: (MediaQuery.of(context).size.width - 27) / 3,
-                                                            color: ThemeColors.backgroundLight,
+                                                            width: (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3,
+                                                            color: ThemeColors
+                                                                .backgroundLight,
                                                           ),
                                                           Container(
                                                             height: 136 / 3,
-                                                            width: (MediaQuery.of(context).size.width - 27) / 3,
+                                                            width: (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    27) /
+                                                                3,
                                                             child: FittedBox(
-                                                              child: Image.asset(pathsList[3]),
+                                                              child:
+                                                                  Image.asset(
+                                                                      pathsList[
+                                                                          3]),
                                                               fit: BoxFit.cover,
                                                             ),
                                                           )
@@ -958,19 +1052,26 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 23.0),
-                child: new Container(
-                  height: 52.00,
-                  width: MediaQuery.of(context).size.width - 48,
-                  decoration: BoxDecoration(
-                    color: ThemeColors.mainGreen,
-                    borderRadius: BorderRadius.circular(82.00),
-                  ),
-                  child: Center(
-                    child: new Text(
-                      "ENVOYER",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline1,
-                      textScaleFactor: 1.4,
+                child: InkWell(
+                  onTap: () {
+                    print(ideeProbleme);
+                    makePostProposition(contenu, solution, "national",
+                        ideeProbleme ? "problem" : "idea");
+                  },
+                  child: new Container(
+                    height: 52.00,
+                    width: MediaQuery.of(context).size.width - 48,
+                    decoration: BoxDecoration(
+                      color: ThemeColors.mainGreen,
+                      borderRadius: BorderRadius.circular(82.00),
+                    ),
+                    child: Center(
+                      child: new Text(
+                        "ENVOYER",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline1,
+                        textScaleFactor: 1.4,
+                      ),
                     ),
                   ),
                 ),
