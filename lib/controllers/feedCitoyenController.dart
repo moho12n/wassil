@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:http/http.dart';
+import 'package:wassil/models/ideaModel.dart';
+import 'package:wassil/models/problemModel.dart';
 import 'dart:convert';
 import '../models/postModel.dart';
 import '../tools/tools.dart';
@@ -12,17 +14,36 @@ Map<String, String> headers = {
   HttpHeaders.acceptHeader: "application/json",
 };
 
-Future<List<PostModel>> makeGetRequestFeed(String type) async {
+Future<List<IdeaModel>> makeGetRequestFeedIdeas(String type) async {
   // make GET request
-  print("heeere");
-  Response response =
-      await get(Tools.domainName + 'feed?type=$type', headers: headers);
+
+  Response response = await get(
+      Tools.domainName + 'proposition?type=$type&nature=idea',
+      headers: headers);
   int statusCode = response.statusCode;
-  List<PostModel> feed;
+  List<IdeaModel> feed;
   print("response body : " + response.body);
   var data = json.decode(response.body);
-  var rest = data["data"]["projects_surveys"] as List;
-  feed = rest.map<PostModel>((json) => PostModel.fromJson(json)).toList();
+  var rest = data["data"]["propositions"] as List;
+  feed = rest.map<IdeaModel>((json) => IdeaModel.fromJson(json)).toList();
+
+  print("*******************");
+  print("feed: " + feed.toString());
+  return feed;
+}
+
+Future<List<ProblemModel>> makeGetRequestFeedproblems(String type) async {
+  // make GET request
+
+  Response response = await get(
+      Tools.domainName + 'proposition?type=$type&nature=problem',
+      headers: headers);
+  int statusCode = response.statusCode;
+  List<ProblemModel> feed;
+  print("response body : " + response.body);
+  var data = json.decode(response.body);
+  var rest = data["data"]["propositions"] as List;
+  feed = rest.map<ProblemModel>((json) => ProblemModel.fromJson(json)).toList();
 
   print("*******************");
   print("feed: " + feed.toString());

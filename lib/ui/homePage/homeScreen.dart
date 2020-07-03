@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wassil/controllers/feedCitoyenController.dart';
 import 'package:wassil/controllers/feedController.dart';
 import 'package:wassil/controllers/propositionController.dart';
 import 'package:wassil/main.dart';
@@ -503,8 +504,7 @@ class _HomeScreenState extends State<HomeScreen>
               child: FloatingActionButton(
                 backgroundColor: ThemeColors.mainGreen,
                 onPressed: () async {
-                  await makePostProposition(
-                      "Laez", "ak ta3rf", "national", "problem");
+                  await makeGetRequestFeedproblems("national");
                   Navigator.of(context).pushNamed("/AddProposition");
                 },
                 child: Icon(Icons.edit),
