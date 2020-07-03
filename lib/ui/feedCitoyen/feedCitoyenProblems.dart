@@ -12,6 +12,7 @@ import 'package:wassil/models/postProject.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wassil/ui/feedCitoyen/elementWidget.dart';
 
 class FeedCitoyenProblems extends StatefulWidget {
   final VoidCallback toggle;
@@ -464,18 +465,13 @@ class _HomeScreenState extends State<FeedCitoyenProblems>
                                         return Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: (Container(
-                                            height: 100,
-                                            color: Colors.black,
-                                            child: Column(
-                                              children: <Widget>[
-                                                Text(snapshot
-                                                    .data[index].content),
-                                                Text(snapshot.data[index].type),
-                                                Text(snapshot
-                                                    .data[index].nature),
-                                                Text(snapshot
-                                                    .data[index].solution),
-                                              ],
+                                            child: ProblemStatelessWidget(
+                                              title: "Titre",
+                                              description:
+                                                  snapshot.data[index].content,
+                                              solution:
+                                                  snapshot.data[index].solution,
+                                              type: "Problem",
                                             ),
                                           )),
                                         );
@@ -494,18 +490,13 @@ class _HomeScreenState extends State<FeedCitoyenProblems>
                                         return Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: (Container(
-                                            height: 100,
-                                            color: Colors.black,
-                                            child: Column(
-                                              children: <Widget>[
-                                                Text(snapshot
-                                                    .data[index].content),
-                                                Text(snapshot.data[index].type),
-                                                Text(snapshot
-                                                    .data[index].nature),
-                                                Text(snapshot
-                                                    .data[index].solution),
-                                              ],
+                                            child: ProblemStatelessWidget(
+                                              title: "Titre",
+                                              description:
+                                                  snapshot.data[index].content,
+                                              solution:
+                                                  snapshot.data[index].solution,
+                                              type: "Problem",
                                             ),
                                           )),
                                         );
