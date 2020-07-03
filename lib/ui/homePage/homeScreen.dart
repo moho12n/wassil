@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wassil/controllers/feedController.dart';
 import 'package:wassil/main.dart';
+import 'package:wassil/models/postModel.dart';
 import 'PostWidget.dart';
 import 'package:wassil/models/post.dart';
 import 'package:wassil/models/postNews.dart';
@@ -288,7 +289,8 @@ class _HomeScreenState extends State<HomeScreen>
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(90),
                   child: Theme(
-                    data: Theme.of(context).copyWith(accentColor: ThemeColors.textColor1),
+                    data: Theme.of(context)
+                        .copyWith(accentColor: ThemeColors.textColor1),
                     child: Stack(children: <Widget>[
                       AnimatedContainer(
                         duration: Duration(milliseconds: 400),
@@ -499,9 +501,8 @@ class _HomeScreenState extends State<HomeScreen>
                   ]),
               child: FloatingActionButton(
                 backgroundColor: ThemeColors.mainGreen,
-                onPressed: ()  async{
-                  await makeGetRequestFeed("national");
-                //Navigator.of(context).pushNamed("/AddProposition");
+                onPressed: () async {
+                  Navigator.of(context).pushNamed("/AddProposition");
                 },
                 child: Icon(Icons.edit),
               ),

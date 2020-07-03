@@ -1,12 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:wassil/controllers/feedController.dart';
+import 'package:wassil/models/postModel.dart';
+import 'package:wassil/models/postNews.dart';
+import 'package:wassil/models/postPoll.dart';
+import 'package:wassil/models/postProject.dart';
 import 'package:wassil/ui/homePage/homeScreen.dart';
 import 'package:wassil/ui/homePage/drawerScreen.dart';
 import 'package:wassil/ui/proposition/addPropositionScreen.dart';
 import 'package:wassil/ui/proposition/imagepick.dart';
+import 'models/post.dart';
 
-void main() => runApp(
-      MyApp(),
-    );
+List<PostModel> listPostRegional;
+List<PostModel> listPostNational;
+fetchPost() async {
+  listPostNational = await makeGetRequestFeed("national");
+  listPostRegional = await makeGetRequestFeed("regional");
+  listPostRegional.forEach((element) {
+    element.post_type == "survey"
+        ? Post.localPosts.add(Poll(
+            element.title,
+            element.ministryName,
+            element.title,
+          ))
+        : element.post_type == "project"
+            ? Post.localPosts.add(
+                Project(element.title, element.townName, element.description, [
+                "assets/img/projet1.jpg",
+                "assets/img/projet2.jpg",
+                "assets/img/projet3.jpg",
+                "assets/img/projet4.jpg",
+              ]))
+            : Post.localPosts.add(News(element.title, element.ministryName,
+                element.description, ["assets/img/news1.jpg"]));
+  });
+  listPostNational.forEach((element) {
+    element.post_type == "survey"
+        ? Post.nationalPosts.add(Poll(
+            element.title,
+            element.ministryName,
+            element.title,
+          ))
+        : element.post_type == "project"
+            ? Post.nationalPosts.add(
+                Project(element.title, element.townName, element.description, [
+                "assets/img/projet1.jpg",
+                "assets/img/projet2.jpg",
+                "assets/img/projet3.jpg",
+                "assets/img/projet4.jpg",
+              ]))
+            : Post.nationalPosts.add(News(element.title, element.ministryName,
+                element.description, ["assets/img/news1.jpg"]));
+  });
+}
+
+void main() async {
+  await fetchPost();
+  runApp(
+    MyApp(),
+  );
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -16,51 +68,53 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
-          textTheme: TextTheme(
-            headline1: TextStyle(
-                color: ThemeColors.textColor1,
-                fontFamily: 'Montserrat',
-                fontSize: 14,
-                fontWeight: FontWeight.w500),
-            headline2: TextStyle(
-                color: ThemeColors.textColor2,
-                fontFamily: 'Montserrat',
-                fontSize: 14,
-                fontWeight: FontWeight.w500),
-            headline3: TextStyle(
-                color: ThemeColors.textColor3,
-                fontFamily: 'Montserrat',
-                fontSize: 14,
-                fontWeight: FontWeight.w500),
-            headline4: TextStyle(
-                color: ThemeColors.textColor2,
-                fontFamily: 'Montserrat',
-                fontSize: 12,
-                fontWeight: FontWeight.w500),
-            headline5: TextStyle(
-                color: ThemeColors.textColor3,
-                fontFamily: 'Montserrat',
-                fontSize: 12,
-                fontWeight: FontWeight.w500),
-            bodyText1: TextStyle(
-                color: ThemeColors.textColor2,
-                fontFamily: 'Segoe UI',
-                fontSize: 10,
-                fontWeight: FontWeight.w400),
-            bodyText2: TextStyle(
-                color: ThemeColors.textColor1,
-                fontFamily: 'Segoe UI',
-                fontSize: 10,
-                fontWeight: FontWeight.w600),
-            button: TextStyle(
-                color: ThemeColors.textColor1,
-                fontFamily: 'Montserrat',
-                fontSize: 16,
-                fontWeight: FontWeight.w500),
-          ),),
+        primarySwatch: Colors.blueGrey,
+        textTheme: TextTheme(
+          headline1: TextStyle(
+              color: ThemeColors.textColor1,
+              fontFamily: 'Montserrat',
+              fontSize: 14,
+              fontWeight: FontWeight.w500),
+          headline2: TextStyle(
+              color: ThemeColors.textColor2,
+              fontFamily: 'Montserrat',
+              fontSize: 14,
+              fontWeight: FontWeight.w500),
+          headline3: TextStyle(
+              color: ThemeColors.textColor3,
+              fontFamily: 'Montserrat',
+              fontSize: 14,
+              fontWeight: FontWeight.w500),
+          headline4: TextStyle(
+              color: ThemeColors.textColor2,
+              fontFamily: 'Montserrat',
+              fontSize: 12,
+              fontWeight: FontWeight.w500),
+          headline5: TextStyle(
+              color: ThemeColors.textColor3,
+              fontFamily: 'Montserrat',
+              fontSize: 12,
+              fontWeight: FontWeight.w500),
+          bodyText1: TextStyle(
+              color: ThemeColors.textColor2,
+              fontFamily: 'Segoe UI',
+              fontSize: 10,
+              fontWeight: FontWeight.w400),
+          bodyText2: TextStyle(
+              color: ThemeColors.textColor1,
+              fontFamily: 'Segoe UI',
+              fontSize: 10,
+              fontWeight: FontWeight.w600),
+          button: TextStyle(
+              color: ThemeColors.textColor1,
+              fontFamily: 'Montserrat',
+              fontSize: 16,
+              fontWeight: FontWeight.w500),
+        ),
+      ),
       routes: <String, WidgetBuilder>{
-    "/AddProposition": (BuildContext context) => new AddPropositionScreen(),},
+        "/AddProposition": (BuildContext context) => new AddPropositionScreen(),
+      },
       home: HomePage(),
     );
   }
@@ -183,8 +237,7 @@ class ThemeColors {
       ThemeColors.textColor2 = Color(0xffC4CED8);
       ThemeColors.textColor3 = Color(0xff8E9BA7);
       return;
-    }
-    else {
+    } else {
       ThemeColors.nightMode = false;
       ThemeColors.backgroundDark = Color(0xffffffff);
       ThemeColors.background = Color(0xffC4CED8);
