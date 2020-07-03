@@ -4,6 +4,8 @@ import 'package:wassil/models/postModel.dart';
 import 'package:wassil/models/postNews.dart';
 import 'package:wassil/models/postPoll.dart';
 import 'package:wassil/models/postProject.dart';
+import 'package:wassil/ui/feedCitoyen/feedCitoyenIdeas.dart';
+import 'package:wassil/ui/feedCitoyen/feedCitoyenProblems.dart';
 import 'package:wassil/ui/homePage/homeScreen.dart';
 import 'package:wassil/ui/homePage/drawerScreen.dart';
 import 'package:wassil/ui/proposition/addPropositionScreen.dart';
@@ -166,7 +168,7 @@ class _HomePageState extends State<HomePage>
                       ..translate(slide)
                       ..scale(scale),
                     alignment: Alignment.centerLeft,
-                    child: HomeScreen(
+                    child: FeedCitoyenProblems(
                       toggle: toggleDrawer,
                     )),
               ],

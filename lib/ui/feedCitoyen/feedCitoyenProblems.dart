@@ -4,7 +4,7 @@ import 'package:wassil/controllers/feedController.dart';
 import 'package:wassil/controllers/propositionController.dart';
 import 'package:wassil/main.dart';
 import 'package:wassil/models/postModel.dart';
-import 'PostWidget.dart';
+
 import 'package:wassil/models/post.dart';
 import 'package:wassil/models/postNews.dart';
 import 'package:wassil/models/postPoll.dart';
@@ -13,10 +13,10 @@ import 'package:getflutter/getflutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomeScreen extends StatefulWidget {
+class FeedCitoyenProblems extends StatefulWidget {
   final VoidCallback toggle;
 
-  const HomeScreen({
+  const FeedCitoyenProblems({
     this.toggle,
     Key key,
   }) : super(key: key);
@@ -25,7 +25,7 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends State<FeedCitoyenProblems>
     with SingleTickerProviderStateMixin {
   TabController controller;
 
@@ -453,16 +453,66 @@ class _HomeScreenState extends State<HomeScreen>
                   controller: controller,
                   children: <Widget>[
                     /// here is the local post page
-                    Wrap(
-                      direction: Axis.horizontal,
-                      children: _buildPosts(Post.localPosts),
-                    ),
-
-                    /// here is the national post page
-                    Wrap(
-                      direction: Axis.horizontal,
-                      children: _buildPosts(Post.nationalPosts),
-                    ),
+                    FutureBuilder(
+                        future: makeGetRequestFeedproblems("regional"),
+                        builder: (context, snapshot) {
+                          return snapshot.data != null
+                              ? Container(
+                                  child: ListView.builder(
+                                      itemCount: snapshot.data.length,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: (Container(
+                                            height: 100,
+                                            color: Colors.black,
+                                            child: Column(
+                                              children: <Widget>[
+                                                Text(snapshot
+                                                    .data[index].content),
+                                                Text(snapshot.data[index].type),
+                                                Text(snapshot
+                                                    .data[index].nature),
+                                                Text(snapshot
+                                                    .data[index].solution),
+                                              ],
+                                            ),
+                                          )),
+                                        );
+                                      }),
+                                )
+                              : Center(child: CircularProgressIndicator());
+                        }),
+                    FutureBuilder(
+                        future: makeGetRequestFeedproblems("national"),
+                        builder: (context, snapshot) {
+                          return snapshot.data != null
+                              ? Container(
+                                  child: ListView.builder(
+                                      itemCount: snapshot.data.length,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: (Container(
+                                            height: 100,
+                                            color: Colors.black,
+                                            child: Column(
+                                              children: <Widget>[
+                                                Text(snapshot
+                                                    .data[index].content),
+                                                Text(snapshot.data[index].type),
+                                                Text(snapshot
+                                                    .data[index].nature),
+                                                Text(snapshot
+                                                    .data[index].solution),
+                                              ],
+                                            ),
+                                          )),
+                                        );
+                                      }),
+                                )
+                              : Center(child: CircularProgressIndicator());
+                        }),
                   ],
                 ),
               ),
@@ -504,7 +554,6 @@ class _HomeScreenState extends State<HomeScreen>
               child: FloatingActionButton(
                 backgroundColor: ThemeColors.mainGreen,
                 onPressed: () async {
-                  
                   Navigator.of(context).pushNamed("/AddProposition");
                 },
                 child: Icon(Icons.edit),
@@ -514,25 +563,5 @@ class _HomeScreenState extends State<HomeScreen>
         ],
       ),
     ));
-  }
-
-  List<Widget> _buildPosts(List<Post> list) {
-    List<Widget> _returnList = [];
-    for (int i = 0; i < list.length; i++) {
-      if (list[i] is News) {
-        _returnList.add(NewsWidget(
-          news: list[i],
-        ));
-      } else if (list[i] is Poll) {
-        _returnList.add(PollWidget(
-          poll: list[i],
-        ));
-      } else if (list[i] is Project) {
-        _returnList.add(ProjectWidget(
-          project: list[i],
-        ));
-      }
-    }
-    return _returnList;
   }
 }
