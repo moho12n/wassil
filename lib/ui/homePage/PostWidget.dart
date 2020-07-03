@@ -440,7 +440,9 @@ class PollWidget extends StatelessWidget {
         ),
         child: () {
           // if (news.getImages.length == 0) {
-          return Container();
+          return Container(
+            
+          );
         }(),
       ),
     );
