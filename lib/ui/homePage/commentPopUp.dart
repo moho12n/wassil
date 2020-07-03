@@ -203,7 +203,7 @@ void avisPopup(BuildContext context, String projectId, String comment) {
                                                                   '{"message":"Success! Comment saved."}'
                                                               ? showSuccessDialog(
                                                                   context,
-                                                                  "success")
+                                                                  "Votre commentaire a été envoyé")
                                                               : showErrorDialog(
                                                                   context,
                                                                   "Veuillez écrire un commentaire");

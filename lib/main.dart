@@ -11,6 +11,7 @@ import 'package:wassil/ui/homePage/drawerScreen.dart';
 import 'package:wassil/ui/monScore.dart/scoreScreen.dart';
 import 'package:wassil/ui/proposition/addPropositionScreen.dart';
 import 'package:wassil/ui/proposition/imagepick.dart';
+import 'package:wassil/ui/splashScreen/splachScreen.dart';
 import 'models/post.dart';
 
 int variable_expression = 0;
@@ -109,7 +110,6 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Montserrat',
               fontSize: 12,
               fontWeight: FontWeight.w500),
-              
           bodyText1: TextStyle(
               color: ThemeColors.textColor2,
               fontFamily: 'Segoe UI',
@@ -129,8 +129,9 @@ class MyApp extends StatelessWidget {
       ),
       routes: <String, WidgetBuilder>{
         "/AddProposition": (BuildContext context) => new AddPropositionScreen(),
+        "/HomePage": (BuildContext context) => new HomePage()
       },
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }
@@ -235,7 +236,7 @@ class _HomePageState extends State<HomePage>
                           );
                         }
                         break;
-                          
+
                       default:
                         {
                           return HomeScreen(

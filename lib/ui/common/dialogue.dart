@@ -57,7 +57,7 @@ void showSuccessDialog(BuildContext context, String success) {
                                         textAlign: TextAlign.center,
                                         text: TextSpan(children: [
                                           TextSpan(
-                                              text: "Bravo !\n",
+                                              text: "Envoyé !\n",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline1),
@@ -140,7 +140,7 @@ void showErrorDialog(BuildContext context, String error) {
                                         textAlign: TextAlign.center,
                                         text: TextSpan(children: [
                                           TextSpan(
-                                              text: "Oops!\n",
+                                              text: "Erreur !\n",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline1),

@@ -63,7 +63,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
                     SizedBox(
                       height: 2,
                     ),
-                    Text("My User ID: 10964006",
+                    Text("Wilaya d'Alger",
                         textAlign: TextAlign.left,
                         style: Theme.of(context).textTheme.bodyText1),
                     SizedBox(
@@ -85,7 +85,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            Random().nextInt(400).toString(),
+                            "228",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: ThemeColors.textColor2,
@@ -101,6 +101,56 @@ class _ScoreScreenState extends State<ScoreScreen> {
                       child: Row(
                         children: <Widget>[
                           Text(
+                            "🏆     Classement National :  ",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: ThemeColors.textColor1,
+                                fontFamily: 'Montserrat',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "19",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: ThemeColors.textColor2,
+                                fontFamily: 'Montserrat',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32.0, top: 48),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            "🏅    Classement Regional :  ",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: ThemeColors.textColor1,
+                                fontFamily: 'Montserrat',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "6",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: ThemeColors.textColor2,
+                                fontFamily: 'Montserrat',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32.0, top: 48),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
                             "🚨    Problèmes signalés :  ",
                             textAlign: TextAlign.left,
                             style: TextStyle(
@@ -110,7 +160,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            Random().nextInt(5).toString(),
+                            "1",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: ThemeColors.textColor2,
@@ -135,7 +185,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            Random().nextInt(3).toString(),
+                            "3",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: ThemeColors.textColor2,
@@ -160,7 +210,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            Random().nextInt(60).toString(),
+                            "41",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: ThemeColors.textColor2,
@@ -185,16 +235,19 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            Random().nextInt(10).toString(),
+                            "16",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: ThemeColors.textColor2,
                                 fontFamily: 'Montserrat',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500),
-                          )
+                          ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 96,
                     ),
                   ],
                 ),

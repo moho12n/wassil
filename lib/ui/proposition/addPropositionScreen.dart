@@ -1066,7 +1066,7 @@ class _AddPropositionScreenState extends State<AddPropositionScreen> {
                         "national",
                         ideeProbleme ? "problem" : "idea");
                     response.body == '{"message":"success"}'
-                        ? showSuccessDialog(context, "success")
+                        ? showSuccessDialog(context, "Votre publication a été envoyé")
                         : showErrorDialog(context, response.body);
                   },
                   child: new Container(
