@@ -12,11 +12,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class DrawerScreen extends StatefulWidget {
   final Function() onPressedGov;
   final Function() onPressedProb;
+  final Function() onPressedIdea;
   
   const DrawerScreen({
     Key key,
     this.onPressedGov,
     this.onPressedProb,
+    this.onPressedIdea,
   }) : super(key: key);
   
   @override
@@ -258,7 +260,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   disabledColor: Colors.grey[350],
                   disabledTextColor: Colors.grey[500],
-                  onPressed: () {},
+                  onPressed: widget.onPressedIdea,
                   child: Row(
                     children: <Widget>[
                       Container(
