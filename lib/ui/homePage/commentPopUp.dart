@@ -3,6 +3,8 @@ import 'package:wassil/main.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+String comment = "";
+
 class Dimens {
   static double Width;
   static double Height;
@@ -23,8 +25,8 @@ void avisPopup(BuildContext context) {
               Container(
                 width: Dimens.Width,
                 height: Dimens.Height,
-                decoration:
-                    BoxDecoration(color: Color(0xff5acfc3).withOpacity(0.30)),
+                decoration: BoxDecoration(
+                    color: ThemeColors.backgroundDark.withOpacity(0.30)),
                 child: GestureDetector(
                   onTap: () => print(''),
                   child: Center(
@@ -33,7 +35,7 @@ void avisPopup(BuildContext context) {
                       child: Container(
                         color: Colors.white,
                         width: Dimens.Width * .9,
-                        height: Dimens.Height * .75,
+                        height: Dimens.Height * .45,
                         child: Material(
                           textStyle: TextStyle(color: Colors.black),
                           color: Colors.white,
@@ -64,28 +66,15 @@ void avisPopup(BuildContext context) {
                                       children: <Widget>[
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 30),
+                                              const EdgeInsets.only(top: 0),
                                           child: Center(
                                             child: RichText(
-                                                maxLines: 10,
+                                                maxLines: 5,
                                                 textAlign: TextAlign.center,
                                                 text: TextSpan(children: [
                                                   TextSpan(
-                                                      text: "text",
-                                                      style: TextStyle(
-                                                        fontFamily:
-                                                            "Montserrat",
-                                                        fontSize: 24,
-                                                        color:
-                                                            Color(0xff000000),
-                                                      )),
-                                                  WidgetSpan(
-                                                      child: Container(
-                                                    height: 10.0,
-                                                  )),
-                                                  TextSpan(
                                                       text:
-                                                          "Comment trouvez-vous ce lieu ?",
+                                                          "Laissez votre commentaire",
                                                       style: TextStyle(
                                                         fontFamily:
                                                             "Montserrat",
@@ -93,20 +82,6 @@ void avisPopup(BuildContext context) {
                                                         color:
                                                             Color(0xff000000),
                                                       )),
-                                                  WidgetSpan(
-                                                      child: Container(
-                                                    height: 10.0,
-                                                  )),
-                                                  TextSpan(
-                                                    text:
-                                                        "Vous contribuez à protéger notre patrimoine",
-                                                    style: TextStyle(
-                                                      fontFamily: "Montserrat",
-                                                      fontSize: 16,
-                                                      color: Color(0xff000000)
-                                                          .withOpacity(0.60),
-                                                    ),
-                                                  ),
                                                 ])),
                                           ),
                                         ),
@@ -114,7 +89,7 @@ void avisPopup(BuildContext context) {
                                           padding: EdgeInsets.only(
                                               top: Dimens.Height * .05),
                                           child: new Container(
-                                            height: Dimens.Height * .25,
+                                            height: Dimens.Height * .20,
                                             width: Dimens.Width * .8,
                                             decoration: BoxDecoration(
                                               color: Color(0xff707070)
@@ -140,7 +115,7 @@ void avisPopup(BuildContext context) {
                                                       ? "Le champs Avis ne doit pas être vide"
                                                       : null,
                                                   border: InputBorder.none,
-                                                  hintText: "Votre avis",
+                                                  hintText: "Votre commentaire",
                                                   hintStyle: TextStyle(
                                                     fontFamily: "Montserrat",
                                                     fontSize: 17,
@@ -150,9 +125,8 @@ void avisPopup(BuildContext context) {
                                                   //  hintStyle: Theme.of(context).textTheme.display2,
                                                 ),
                                                 onChanged: (input) {
-                                                  /*setState(() {
-                                                    description = input;
-                                                  });*/
+                                                  comment = input;
+                                                  print("comment = " + comment);
                                                 },
                                               ),
                                             ),
@@ -204,14 +178,14 @@ void avisPopup(BuildContext context) {
                                                               Dimens.Width * .3,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Color(
-                                                                0xff5acfc3),
+                                                            color: ThemeColors
+                                                                .mainGreen,
                                                             boxShadow: [
                                                               BoxShadow(
                                                                 offset: Offset(
                                                                     0.00, 5.00),
-                                                                color: Color(
-                                                                        0xff5acfc3)
+                                                                color: ThemeColors
+                                                                    .mainGreen
                                                                     .withOpacity(
                                                                         0.32),
                                                                 blurRadius: 5,
